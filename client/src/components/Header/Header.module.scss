@@ -1,0 +1,15 @@
+@function toRem($value) {
+    $remValue: ($value / 16) + rem;
+    @return $remValue;
+}
+
+$headerHeight: 60;
+
+.container {
+    position: fixed;
+    height: toRem($headerHeight);
+    border: 2px solid black;
+    width: 100vw;
+    z-index: 10;
+    background-color: white;
+}

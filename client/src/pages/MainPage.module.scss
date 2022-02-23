@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&family=Noto+Sans+KR&display=swap');
+
+@function toRem($value) {
+    $remValue: ($value / 16) + rem;
+    @return $remValue;
+}
+
+@keyframes hideYearSelectArea {
+    0% {
+        visibility: visible;
+    }
+    100% {
+        visibility: hidden;
+    }
+}
+
+@keyframes floatUp {
+    0% {
+        top: toRem(60);
+        opacity: 0;
+    }
+
+    100% {
+        top: toRem(40);
+        opacity: 1;
+    }
+}
+
+$headerHeight: 60;
+$upwardHeight: 730;
+body {
+    background-color: #eeeeee;
+    overflow-y: hidden;
+}
+
+section, .rank, .name, .rate, .party {
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+
+
+h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+.yearSelectArea {
+    position: fixed;
+    top: toRem(100);
+    right: toRem(0);
+    z-index: 20;
+    cursor: pointer;
+}
+
+#visible {
+    display: block;
+}
+
+#invisible {
+   animation: hideYearSelectArea;
+   animation-delay: 2s;
+   animation-fill-mode: forwards;   
+}
+
+.openYearSelect {
+    position: fixed;
+    top: toRem(30);
+    right: toRem(20);
+    z-index: 10;
+    background-color: white;
+    border: white;
+    cursor: pointer;
+
+    img {
+        width: toRem(40);
+    }
+}
+
+#containerMoveUpward {
+    top: - toRem($upwardHeight);
+    bottom: -100vh;
+}
+
+#detailMoveUpward {
+    top: 0;
+    bottom: 0;
+}
+
+.buttonWrapper, .container > .buttonWrapper {
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    bottom: toRem(10);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    button {
+        font-family: 'Jua', 'sans-serif';
+        font-size: toRem(20);
+        border: none;
+        background-color: #673ab7;
+        
+        border-radius: toRem(10);
+        padding: toRem(5) toRem(30) 0;
+        cursor: pointer;
+        transition: 0.2s;
+
+        svg {
+            width: toRem(30);
+            height: toRem(25);
+            path {
+                stroke: white;
+            }
+        }
+
+        &:hover {
+            background-color: white;
+            svg {
+                path {
+                    stroke: #673ab7;
+                }
+            }
+            
+        }
+    }
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding-top: toRem(30);
+    width: 100vw;
+
+    .wrapper {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    div {
+        position: relative;
+        margin: 0 auto 0;
+    }
+
+    h2 {
+        font-family: 'Do Hyeon', sans-serif;
+        font-size: toRem(35);
+    }
+
+    h3 {
+        margin-top: toRem(10);
+        font-family: 'Jua', sans-serif;
+        font-size: toRem(30);
+        color:  #673ab7;
+    }
+
+    section {
+        position: inherit;
+        text-align: center;
+        margin-bottom: toRem(20);
+        color: #424242;
+        span {
+            color: #673ab7;
+        }
+
+        p {
+            font-size: toRem(22);
+        }
+    }
+
+    .candidate {
+        position: relative;
+        width: toRem(200);
+        height: fit-content;
+        border: 2px solid #cfcfcf;
+        border-radius: toRem(20);
+        padding: toRem(25);
+        background-color: white;
+        animation: floatUp 1s forwards;
+
+        >div {
+            width: fit-content;
+        }
+        .rank {
+            position: relative;
+            bottom: toRem(10);
+            font-size: toRem(30);
+            margin-bottom: toRem(10);
+        }
+    
+        .name {
+            padding: toRem(5);
+            font-size: toRem(28);
+        }
+    
+        .rate {
+            position: relative;
+            top: toRem(5);
+            font-size: toRem(35);
+            font-family: 'Jua', sans-serif;
+        }
+    
+        .party {
+            font-size: toRem(20);
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    #first {
+        order: 1;
+        left: toRem(20);
+    }
+
+    #second {
+        order: 3;
+        right: toRem(20);
+    }
+
+    #map {
+        order: 2
+    }
+}
+
+.detail {
+    position: absolute;
+    width: 100vw;
+    transition: 1s;
+    top: 100vh;
+    bottom: - toRem($upwardHeight);
+
+    .buttonWrapper {
+        top: toRem(10);
+    }
+}
+
+.container, .detail {
+    transition: top 1s ease-in-out, bottom 1s ease-in-out;
+}
+
+

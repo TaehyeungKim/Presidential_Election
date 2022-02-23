@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&family=Noto+Sans+KR&display=swap');
+
+@function toRem($value) {
+    $remValue: ($value / 16) + rem;
+    @return $remValue;
+}
+
+@keyframes floatUp {
+    0% {
+        margin-top: toRem(60);
+        opacity: 0;
+    }
+
+    100% {
+        margin-top: toRem(40);
+        opacity: 1;
+    }
+}
+
+@keyframes electAni {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.rank, .name, .party {
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+.candidate {
+    position: relative;
+    width: toRem(250);
+    height: fit-content;
+    border: 2px solid #cfcfcf;
+    border-radius: toRem(20);
+    padding: toRem(25);
+    background-color: white;
+    animation: floatUp 1s forwards;
+    z-index: 1;
+
+    >div {
+        width: fit-content;
+    }
+    .rank {
+        position: relative;
+        bottom: toRem(10);
+        font-size: toRem(30);
+        margin-bottom: toRem(10);
+    }
+
+    .name {
+        padding: toRem(5);
+        font-size: toRem(28);
+    }
+
+    .rate {
+        position: relative;
+        top: toRem(5);
+        font-size: toRem(35);
+        font-family: 'Jua', sans-serif;
+    }
+
+    .party {
+        font-size: toRem(20);
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+#first {
+    order: 1;
+    left: toRem(40);
+}
+
+#second {
+    order: 3;
+    right: toRem(40);
+}
+
+#elected {
+    order: 1;
+    left: toRem(40);
+    background: rgb(249,248,113);
+    background: linear-gradient(90deg, rgba(249,248,113,1) 0%, rgba(255,178,119,1) 50%, rgba(255,255,255,1) 100%);
+    background-size: 400% 400%;
+    animation: floatUp 1s forwards, electAni 4s alternate infinite;
+}

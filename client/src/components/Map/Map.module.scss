@@ -1,0 +1,33 @@
+@function toRem($value) {
+    $remValue: ($value / 16) + rem;
+    @return $remValue;
+}
+
+$headerHeight: 60;
+
+.container {
+    position: relative;
+    top: 0;
+    width: fit-content;
+    margin: 0 auto 0;
+    
+    .whole {
+        background-color: white;
+        font-size: toRem(20);
+        border: 1px solid black;
+        border-radius: toRem(3);
+        transition: 0.5s;
+        &:hover {
+            cursor: pointer;
+            background-color: aqua;
+        }
+    }
+    svg {
+        position: relative;
+        $mapWidth: 340;
+        margin: 0;
+        padding: 0;
+        width: toRem($mapWidth);
+        height: toRem(($mapWidth * 3/2));
+    }
+}

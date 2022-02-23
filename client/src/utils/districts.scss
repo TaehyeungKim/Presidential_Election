@@ -1,0 +1,41 @@
+@keyframes colorChange {
+    0% {
+        fill: #845EC2;
+    }
+
+    20% {
+        fill: #D65DB1;
+    }
+
+    40% {
+        fill: #FF6F91;
+    }
+
+    60% {
+        fill: #FF9671;
+    }
+
+    80%{
+        fill: #FFC75F;
+    }
+
+    100% {
+        fill: #F9F871;
+    }
+}
+
+path {
+    fill: #bcaaa4;
+    cursor: pointer;
+}
+
+#selected {
+    animation: colorChange 3s alternate infinite;
+}
+
+#unselected {
+    transition: 0.5s;
+    &:hover {
+        fill: #8c8c8c;
+    }
+}
