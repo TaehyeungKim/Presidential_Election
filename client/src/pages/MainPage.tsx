@@ -5,6 +5,7 @@ import styles from './MainPage.module.scss'
 import yearSelectButton from '../images/yearSelectButton.png'
 import YearSelect from '../components/YearSelect/YearSelect'
 import ElectionResult from '../components/ElectionResult/ElectionResult'
+import dataProcess from '../functions/dataProcess'
 
 function MainPage() {
     const [district, setDistrict] = useState<string>("전국");
@@ -54,6 +55,7 @@ function MainPage() {
         }
         return data
     }
+    
 
     const parseData = async(req: number) => {
         const data = new FormData();
@@ -64,26 +66,7 @@ function MainPage() {
         })
         const json = await response.json()
         .then(value => {
-            for(let elm in value) {
-                let obj = value[elm]
-                for(let key in obj) {
-                    if(typeof obj[key] === "string") {
-                        let numStr = obj[key] as string
-                        let sa = numStr.split("\n")[0].split(",")
-                        var str = sa[0]
-                        if(sa.length >= 2) {
-                            for(let i = 1; i < sa.length; i++) {
-                                str = str.concat(sa[i])
-                            }
-                        }
-                        let num = Number(str)
-                        if(elm !== "시도명") {
-                            obj[key] = num
-                        }
-                    }
-                }
-                value[elm] = obj
-            }
+            dataProcess(value);
             setElectionData(value)
         })
     }
@@ -91,7 +74,6 @@ function MainPage() {
     useEffect(()=>{
         parseData(year)
         setDetailVisible(false);
-        console.log('parse')
         return()=>{
             setDistrict("전국")
             setElectionData(undefined)}
@@ -101,7 +83,7 @@ function MainPage() {
         
         <>
         <button className = {styles.openYearSelect} onClick = {controlYearSelect}>
-                <img src = {yearSelectButton}/>
+            <img src = {yearSelectButton}/>
         </button>
         <div className={styles.yearSelectArea} id = {visibleYearSelect === true ? styles.visible : styles.invisible}>
             {(()=>{
@@ -111,30 +93,32 @@ function MainPage() {
                 }
                 return list
             })()}
-            </div>  
+        </div>  
         {electionData === undefined ? null : 
         <>
-            <div className = {styles.container} id = {detailVisible === true ? styles.containerMoveUpward : undefined}>
+        <div className = {styles.frame}>
+            <div className = {styles.container} id = {detailVisible === true ? styles.moveUpward : undefined}>
                 <div className = {styles.wrapper}>
                     <ElectionResult electionData={electionData} year={year} district={district} districtMapData={districtMapData}/>
                     <div id = {styles.map}>
                         <section>
-                            <h2>제 <span>{year}</span>대 대통령 선거</h2>
+                            <h2>제<span>{year}</span>대 대통령 선거</h2>
                             <h3>{district}</h3>
                             <p>투표율: {Math.floor(electionData.투표수[districtMapData(year)[`${district}`]] / electionData.선거인수[districtMapData(year)[`${district}`]]*10000)/100}%</p>
                         </section>
                         <Map selectDistrict={selectDistrict} district={district}/>
                     </div>
                 </div>
+                {district !== "전국" ?
                 <div className = {styles.buttonWrapper}>
                     <button onClick = {()=>setDetailVisible(true)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
                     </svg>
                     </button>
-                </div>
+                </div> : null}
             </div>
-            <div className = {styles.detail} id = {detailVisible === true ? styles.detailMoveUpward : undefined}>
+            <div className = {styles.detail} id = {detailVisible === true ? styles.moveUpward : undefined}>
                 <div className = {styles.buttonWrapper}>
                     <button onClick = {()=>setDetailVisible(false)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -142,6 +126,7 @@ function MainPage() {
                     </svg>
                     </button>
                 </div>
+            </div>
             </div>
         
     
