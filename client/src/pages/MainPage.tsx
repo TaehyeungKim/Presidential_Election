@@ -5,6 +5,7 @@ import styles from './MainPage.module.scss'
 import yearSelectButton from '../images/yearSelectButton.png'
 import YearSelect from '../components/YearSelect/YearSelect'
 import ElectionResult from '../components/ElectionResult/ElectionResult'
+import DetailResult from '../components/DetailResult/DetailResult'
 import dataProcess from '../functions/dataProcess'
 
 function MainPage() {
@@ -118,15 +119,7 @@ function MainPage() {
                     </button>
                 </div> : null}
             </div>
-            <div className = {styles.detail} id = {detailVisible === true ? styles.moveUpward : undefined}>
-                <div className = {styles.buttonWrapper}>
-                    <button onClick = {()=>setDetailVisible(false)}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path  d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
-                    </svg>
-                    </button>
-                </div>
-            </div>
+            <DetailResult year={year} region={district} detailVisible={detailVisible} setDetailVisible={setDetailVisible}/>
             </div>
         
     

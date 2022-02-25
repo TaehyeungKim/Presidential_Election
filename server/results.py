@@ -12,5 +12,14 @@ def readData():
     json = df.to_json()
     return json
 
+@app.route("/detail", methods=["POST"])
+def readDetailData():
+    year = request.form['year']
+    region = request.form['region']
+    excel_file = "{}대_지역별.xlsx".format(year)
+    df = pd.read_excel(excel_file, sheet_name="{}".format(region))
+    json = df.to_json()
+    return json
+
 if __name__ == "__main__":
     app.run(debug=True)

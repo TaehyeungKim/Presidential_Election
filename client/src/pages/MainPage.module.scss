@@ -123,7 +123,7 @@ h2, h3, p {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    
+    box-sizing: border-box;
     overflow-y: hidden;
 }
 
@@ -132,7 +132,9 @@ h2, h3, p {
     top: 0;
     height: 100%;
     width: 100%;
+    box-sizing: border-box;
     
+    overflow-y: scroll;    
     //flex
     display: flex;
     flex-direction: column;
