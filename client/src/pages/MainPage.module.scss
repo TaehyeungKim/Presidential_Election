@@ -46,8 +46,8 @@ h2, h3, p {
 
 .yearSelectArea {
     position: fixed;
-    top: toRem(100);
-    right: toRem(0);
+    top: 100px;
+    right: 0;
     z-index: 20;
     cursor: pointer;
 }
@@ -64,15 +64,15 @@ h2, h3, p {
 
 .openYearSelect {
     position: fixed;
-    top: toRem(30);
-    right: toRem(20);
+    top: 30px;
+    right: 20px;
     z-index: 10;
     background-color: transparent;
     border: none;
     cursor: pointer;
 
     img {
-        width: toRem(50);
+        width: 50px;
     }
 
     &:hover {
@@ -84,7 +84,7 @@ h2, h3, p {
     position: relative;
     width: 100%;
     height: fit-content;
-    margin-bottom: toRem(30);
+    margin-bottom: 30px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -124,7 +124,7 @@ h2, h3, p {
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .container {
@@ -146,7 +146,7 @@ h2, h3, p {
         width: 100%;
         height: fit-content;
         position: relative;
-        margin-top: toRem(40);
+        margin-top: 40px;
     }
 
     div {
@@ -244,7 +244,7 @@ h2, h3, p {
 
 
     .buttonWrapper {
-        top: toRem(10);
+        top: 10px;
     }
 }
 

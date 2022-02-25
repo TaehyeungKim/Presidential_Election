@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&family=Noto+Sans+KR&display=swap');
+
+@function toRem($value) {
+    $remValue: ($value / 16) + rem;
+    @return $remValue;
+}
+
+.selector {
+    position: absolute;
+    left: 30px;
+    width: 250px;
+    font-family: "Jua", 'sans-serif';
+    z-index: 10;
+    
+    .selectorHeader {
+        position: relative;
+        background-color: #673ab7;
+        color: white;
+        text-align: center;
+        padding: toRem(10) 0 toRem(10);
+        h3 {
+            padding: 0;
+            margin: 0;
+            font-weight: normal;
+            font-size: toRem(23);
+        }
+    }
+
+    .regionContainer {
+        position: relative;
+        max-height: toRem(405);
+        overflow-y: hidden;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+        .wrapper {
+            position: relative;
+            .region {
+                box-sizing: border-box;
+                border-bottom: 1px solid #808080;
+                font-size: toRem(25);
+                background-color: white;
+                padding: toRem(10) 0 toRem(10) toRem(5);
+                transition: background-color 0.2s;
+                &:hover {
+                    background-color: #B5B5B5;
+                    cursor: pointer;
+                }
+            }
+            #selected {
+                background: rgb(255,223,223);
+                background: linear-gradient(90deg, rgba(255,223,223,1) 0%, rgba(255,255,255,1) 100%);
+                color: purple;
+            }    
+        }
+           
+    }
+
+    .selectorFooter {
+        background-color: #673ab7;
+        height: 40px;
+        >div {
+            position: relative;
+            width: fit-content;
+            margin: 0 auto 0;
+        }
+        button {
+            border: none;
+            background-color: transparent;
+            margin: 0 5px 0 5px;
+            cursor: pointer;
+            svg {
+                stroke: white;
+                width: toRem(30);
+                height: toRem(30);
+                transition: stroke 0.5s;
+            }
+            &:hover {
+                svg {
+                    stroke: #D65DB1;
+                }
+            }
+        }
+
+    }
+}

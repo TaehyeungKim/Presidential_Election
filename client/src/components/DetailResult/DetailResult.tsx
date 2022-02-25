@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import dataProcess from '../../functions/dataProcess'
 import styles from './DetailResult.module.scss'
+import DetailRegionSelector from '../DetailRegionSelector/DetailRegionSelector'
 
 interface DetailResultProps {
     year: number,
     region: string,
     detailVisible: boolean,
-    setDetailVisible:(bool: boolean)=>void
+    setDetailVisible:(bool: boolean)=>void;
 }
 
 function DetailResult({year, region, detailVisible, setDetailVisible}:DetailResultProps) {
@@ -50,6 +51,9 @@ function DetailResult({year, region, detailVisible, setDetailVisible}:DetailResu
             for(let key in detailResutData) {
                 if(key === "구시군명") {
                     for(let reg in detailResutData[key]) {
+                        if(detailResutData[key][reg].split("시").length == 2) {
+                            detailResutData[key][reg] = detailResutData[key][reg].split("시")[0] + "시 " + detailResutData[key][reg].split("시")[1]
+                        }
                         regionArr.push(detailResutData[key][reg])
                     }
                 }
@@ -88,12 +92,33 @@ function DetailResult({year, region, detailVisible, setDetailVisible}:DetailResu
                         </svg>
                         </button>
                     </div>
-                    <h1>{detailRegion}</h1>
-                    {arr.map((vote, idx)=>(
-                        <React.Fragment key={idx}>
-                            <div>{vote.name},{vote.vote[searchThroughArr(regionArr,detailRegion)]}</div>
-                        </React.Fragment>
-                    ))}
+                    <div className = {styles.detailHeader}>
+                        <h1>{detailRegion}</h1>
+                        <h3>투표율: {Math.floor(detailResutData.투표수[searchThroughArr(regionArr, detailRegion)]/detailResutData.선거인수[searchThroughArr(regionArr, detailRegion)] * 10000)/100}%</h3>
+                    </div>
+                    <DetailRegionSelector regionArr={regionArr} detailRegion={detailRegion} setDetailRegion={setDetailRegion}/>
+                    <div className = {styles.detailContent}>    
+                        <div className = {styles.statContainer}>
+                            <ul>
+                            {arr.map((vote, idx)=>{
+                                let stat = Math.floor(vote.vote[searchThroughArr(regionArr,detailRegion)]/detailResutData.계[searchThroughArr(regionArr,detailRegion)] * 10000) / 100;
+                                return (   
+                                        <li>
+                                        <React.Fragment key={idx}>
+                                            <div className = {styles.cand}>
+                                                <div className = {styles.candStatBarArea}>
+                                                    <div>{stat}%</div>
+                                                    <div className = {styles.statBar} style = {detailVisible === true ? {height: `${(stat/100) * 600}px`} : {height: "0px"}}/>
+                                                </div>
+                                                <div className = {styles.candName}>{vote.name.split("_")[0]}<br/>{vote.name.split("_")[1]}</div>
+                                            </div>
+                                        </React.Fragment>
+                                        </li>
+                                    
+                            )})}
+                            </ul>
+                        </div>
+                    </div>
                 </div>)})()}
         
         </>

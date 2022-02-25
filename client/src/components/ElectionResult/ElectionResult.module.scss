@@ -38,10 +38,10 @@
 
 .candidate {
     position: relative;
-    width: toRem(250);
+    width: 250px;
     height: fit-content;
     border: 2px solid #cfcfcf;
-    border-radius: toRem(20);
+    border-radius: 20px;
     padding: toRem(25);
     background-color: white;
     animation: floatUp 1s forwards;
@@ -80,17 +80,17 @@
 
 #first {
     order: 1;
-    left: toRem(40);
+    left: 40px;
 }
 
 #second {
     order: 3;
-    right: toRem(40);
+    right: 40px;
 }
 
 #elected {
     order: 1;
-    left: toRem(40);
+    left: 40px;
     background: rgb(249,248,113);
     background: linear-gradient(90deg, rgba(249,248,113,1) 0%, rgba(255,178,119,1) 50%, rgba(255,255,255,1) 100%);
     background-size: 400% 400%;
