@@ -10,7 +10,6 @@ function DetailRegionSelector({regionArr, detailRegion, setDetailRegion}:DetailR
     
     const container = useRef<HTMLDivElement>(null);
     
-    useEffect(()=>console.log('rendered'),[regionArr])
     return(
         <>
             <div className = {styles.selector}>

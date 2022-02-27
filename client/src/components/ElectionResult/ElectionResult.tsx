@@ -29,7 +29,6 @@ function VoteRate({voteNum, rank, img, info, district, year}: VoteRateProps) {
 
     useEffect(()=>{
         numberAnimation()
-        console.log(district)
         return ()=>{setVoteRate(0); updated.current = 0; clearTimeout()}
     },[district, year])
     
@@ -41,7 +40,7 @@ function VoteRate({voteNum, rank, img, info, district, year}: VoteRateProps) {
             <img src = {img}/>
             <div className = {styles.name}>{info[1]}</div>
             <div className = {styles.party}>{info[0]}</div>
-            <div className = {styles.rate}>{voteRate}%</div>
+            <div className = {styles.rate} style = {(district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13) ? {opacity: 0} : {opacity: 1}}>{voteRate}%</div>
         </>
     )
 }
@@ -83,9 +82,9 @@ function ElectionResult({electionData, year, district, districtMapData}:Election
                     var [first, second] = ["", ""]
                     for(let candidate in candObj) {
                         if(candidate === arr[0].name.split("_")[1]) {
-                            first = candObj[candidate];
+                            first = candObj[candidate].image;
                         } else if(candidate === arr[1].name.split("_")[1]){
-                            second = candObj[candidate];
+                            second = candObj[candidate].image;
                         }
                     }
                     return (

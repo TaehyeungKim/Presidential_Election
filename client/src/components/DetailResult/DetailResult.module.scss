@@ -67,6 +67,9 @@ body {
             margin: 0;
             padding: 0;
         }
+        h1 {
+            color: #673ab7;
+        }
     }
 
     .detailContent {
@@ -81,18 +84,30 @@ body {
             position: relative;
             max-width: 1000px;
             white-space: nowrap; /***/
-            overflow-x: scroll;
+            overflow-x: hidden;
             margin-right: 30px;
             background-color: white;
             border: 2px solid #cfcfcf;
             border-radius: 10px;
+            //flex
+            display: flex;
+            align-items: center;
+            button {
+                position: absolute;
+                z-index: 5;
+            }
+            #left {
+                left: 0;
+            }
+            #right {
+                right: 0;
+            }
             ul {
                 position: relative;
                 list-style-type: none;                
                 margin: 0;
                 padding: 0;
                 li {
-                    
                     width: fit-content;
                     display: inline-block;
             

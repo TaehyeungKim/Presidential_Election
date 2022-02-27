@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import dataProcess from '../../functions/dataProcess'
 import styles from './DetailResult.module.scss'
 import DetailRegionSelector from '../DetailRegionSelector/DetailRegionSelector'
+import DetailStat from '../DetailStat/DetailStat'
+
 
 interface DetailResultProps {
     year: number,
@@ -26,9 +28,9 @@ function DetailResult({year, region, detailVisible, setDetailVisible}:DetailResu
         .then(value=>{
             dataProcess(value);
             setDetailResultData(value);
-            console.log(value);
         })
-    } 
+    }
+
     const searchThroughArr = (arr: Array<string>, region: string) => {
         var code = 0;
         for(let i = 0; i<arr.length; i++) {
@@ -93,31 +95,12 @@ function DetailResult({year, region, detailVisible, setDetailVisible}:DetailResu
                         </button>
                     </div>
                     <div className = {styles.detailHeader}>
-                        <h1>{detailRegion}</h1>
+                        <h1>{region + " " + detailRegion}</h1>
                         <h3>투표율: {Math.floor(detailResutData.투표수[searchThroughArr(regionArr, detailRegion)]/detailResutData.선거인수[searchThroughArr(regionArr, detailRegion)] * 10000)/100}%</h3>
                     </div>
                     <DetailRegionSelector regionArr={regionArr} detailRegion={detailRegion} setDetailRegion={setDetailRegion}/>
-                    <div className = {styles.detailContent}>    
-                        <div className = {styles.statContainer}>
-                            <ul>
-                            {arr.map((vote, idx)=>{
-                                let stat = Math.floor(vote.vote[searchThroughArr(regionArr,detailRegion)]/detailResutData.계[searchThroughArr(regionArr,detailRegion)] * 10000) / 100;
-                                return (   
-                                        <li>
-                                        <React.Fragment key={idx}>
-                                            <div className = {styles.cand}>
-                                                <div className = {styles.candStatBarArea}>
-                                                    <div>{stat}%</div>
-                                                    <div className = {styles.statBar} style = {detailVisible === true ? {height: `${(stat/100) * 600}px`} : {height: "0px"}}/>
-                                                </div>
-                                                <div className = {styles.candName}>{vote.name.split("_")[0]}<br/>{vote.name.split("_")[1]}</div>
-                                            </div>
-                                        </React.Fragment>
-                                        </li>
-                                    
-                            )})}
-                            </ul>
-                        </div>
+                    <div className = {styles.detailContent}>
+                        <DetailStat arr={arr} regionArr={regionArr} detailRegion={detailRegion} searchThroughArr={searchThroughArr} detailResutData={detailResutData} detailVisible={detailVisible} year = {year}/>
                     </div>
                 </div>)})()}
         

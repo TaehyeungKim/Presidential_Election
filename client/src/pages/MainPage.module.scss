@@ -140,6 +140,15 @@ h2, h3, p {
     flex-direction: column;
     justify-content: space-between;
 
+    .noExistence {
+        position: relative;
+        margin-bottom: 30px;
+        text-align: center;
+        color: black;
+        font-family: 'Do Hyeon', sans-serif;
+        font-weight: normal;
+    }
+
     .wrapper {
         display: flex;
         justify-content: space-around;

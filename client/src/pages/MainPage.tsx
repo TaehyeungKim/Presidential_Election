@@ -95,7 +95,10 @@ function MainPage() {
             {(()=>{
                 let list = []
                 for(let order = 19; order >= 13; order=order-1) {
-                    list.push(<YearSelect order={order} visibleYearSelect={visibleYearSelect} selectYear={selectYear} selectedYear={year}/>)
+                    list.push(
+                    <React.Fragment key={order}>
+                        <YearSelect order={order} visibleYearSelect={visibleYearSelect} selectYear={selectYear} selectedYear={year}/>
+                    </React.Fragment>)
                 }
                 return list
             })()}
@@ -109,22 +112,29 @@ function MainPage() {
                     <div id = {styles.map}>
                         <section>
                             <h2>제<span>{year}</span>대 대통령 선거</h2>
-                            <h3>{district}</h3>
-                            <p>투표율: {Math.floor(electionData.투표수[districtMapData(year)[`${district}`]] / electionData.선거인수[districtMapData(year)[`${district}`]]*10000)/100}%</p>
+                            <h3>{district}</h3>                            
+                            <p style={(district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13) ? 
+                            {opacity: 0} : {opacity: 1}}>투표율: {Math.floor(electionData.투표수[districtMapData(year)[`${district}`]] / electionData.선거인수[districtMapData(year)[`${district}`]]*10000)/100}%</p>
                         </section>
                         <Map selectDistrict={selectDistrict} district={district}/>
                     </div>
                 </div>
                 {district !== "전국" ?
-                <div className = {styles.buttonWrapper}>
-                    <button onClick = {showDetailResult}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-                    </svg>
-                    </button>
-                </div> : null}
+                    (district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13) ? 
+                    
+                    <h3 className = {styles.noExistence}>{`제${year}대 대통령 선거 당시 ${district}은 광역자치단체로 분류되지 않았습니다.`}</h3>
+                    :
+                    <div className = {styles.buttonWrapper}>
+                        <button onClick = {showDetailResult}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                        </svg>
+                        </button>
+                    </div> 
+                : null}
             </div>
-            <DetailResult year={year} region={district} detailVisible={detailVisible} setDetailVisible={setDetailVisible}/>
+            {district !== "전국" && !((district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13)) ? 
+            <DetailResult year={year} region={district} detailVisible={detailVisible} setDetailVisible={setDetailVisible}/> : null}
             </div>
         
     

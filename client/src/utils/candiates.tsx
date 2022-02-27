@@ -27,42 +27,43 @@ import YS_13 from '../images/candidates/13/13YS.jpg';
 import DJ_13 from '../images/candidates/13/13DJ.jpg'
 import JP_13 from '../images/candidates/13/13JP.jpg'
 
+
 const candidates = [
     {number: 19, candidates: {
-        "문재인": Moon_19,
-        "홍준표": Hong_19,
-        "안철수": Ahn_19,
-        "유승민": Yoo_19,
-        "심상정": Sim_19
+        "문재인": {image: Moon_19, colorId: "MoonNine"},
+        "홍준표": {image: Hong_19, colorId: "HongNine"},
+        "안철수": {image: Ahn_19, colorId: "AhnNine"},
+        "유승민": {image: Yoo_19, colorId: "YooNine"},
+        "심상정": {image: Sim_19, colorId: "SimNine"}
     }},
     {number: 18, candidates: {
-        "박근혜": Park_18,
-        "문재인": Moon_18
+        "박근혜": {image: Park_18, colorId:""},
+        "문재인": {image: Moon_18, colorId:""}
     }},
     {number: 17, candidates: {
-        "정동영": Jung_17,
-        "이명박": Lee_17,
-        "이회창": LHC_17
+        "정동영": {image: Jung_17, colorId:""},
+        "이명박": {image: Lee_17, colorId:""},
+        "이회창": {image: LHC_17, colorId:""}
     }},
     {number: 16, candidates: {
-        "이회창": Lee_16,
-        "노무현": Roh_16
+        "이회창": {image: Lee_16, colorId:""},
+        "노무현": {image: Roh_16, colorId:""}
     }},
     {number: 15, candidates: {
-        "김대중": Kim_15,
-        "이회창": Lee_15,
-        "이인제": LIJ_15
+        "김대중": {image: Kim_15, colorId:""},
+        "이회창": {image: Lee_15, colorId:""},
+        "이인제": {image: LIJ_15, colorId:""}
     }},
     {number: 14, candidates: {
-        "김대중": DJ_14,
-        "김영삼": YS_14,
-        "정주영": JY_14
+        "김대중": {image: DJ_14, colorId:""},
+        "김영삼": {image: YS_14, colorId:""},
+        "정주영": {image: JY_14, colorId:""}
     }},
     {number: 13, candidates: {
-        "노태우":TW_13,
-        "김영삼":YS_13,
-        "김대중":DJ_13,
-        "김종필":JP_13
+        "노태우":{image: TW_13, colorId:""},
+        "김영삼":{image: YS_13, colorId:""},
+        "김대중":{image: DJ_13, colorId:""},
+        "김종필":{image: JP_13, colorId:""}
     }}
 ]
 
