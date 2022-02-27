@@ -7,8 +7,12 @@ import YearSelect from '../components/YearSelect/YearSelect'
 import ElectionResult from '../components/ElectionResult/ElectionResult'
 import DetailResult from '../components/DetailResult/DetailResult'
 import dataProcess from '../functions/dataProcess'
+import UseMediaQuery from '../customHooks/useMediaQuery'
 
 function MainPage() {
+    const isDeviceMobile = UseMediaQuery('(max-width: 750px)');
+    const isDeviceTablet = UseMediaQuery('(min-height: 1024px)');
+    const isDeviceDesktop = !(isDeviceMobile || isDeviceTablet);
     const [district, setDistrict] = useState<string>("전국");
     const [year, setYear] = useState<number>(19);
     const [visibleYearSelect, setVisibleYearSelect] = useState<boolean>(true);
@@ -85,6 +89,8 @@ function MainPage() {
             setElectionData(undefined)}
     },[year])
 
+    useEffect(()=>console.log(isDeviceDesktop),[isDeviceDesktop])
+
     return(
         
         <>
@@ -107,22 +113,27 @@ function MainPage() {
         <>
         <div className = {styles.frame}>
             <div className = {styles.container} id = {detailVisible === true ? styles.moveUpward : undefined}>
-                <div className = {styles.wrapper}>
-                    <ElectionResult electionData={electionData} year={year} district={district} districtMapData={districtMapData}/>
+                <section>
+                    <h2>제<span>{year}</span>대 대통령 선거</h2>
+                </section>
+                <div className = {styles.wrapper} style = {isDeviceDesktop ? {flexDirection: "row"} : {flexDirection:"column"}}>
+                    {(district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13) ? null :
+                    <ElectionResult electionData={electionData} year={year} district={district} districtMapData={districtMapData} isDeviceDesktop={isDeviceDesktop}/>}
                     <div id = {styles.map}>
-                        <section>
-                            <h2>제<span>{year}</span>대 대통령 선거</h2>
-                            <h3>{district}</h3>                            
-                            <p style={(district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13) ? 
-                            {opacity: 0} : {opacity: 1}}>투표율: {Math.floor(electionData.투표수[districtMapData(year)[`${district}`]] / electionData.선거인수[districtMapData(year)[`${district}`]]*10000)/100}%</p>
-                        </section>
-                        <Map selectDistrict={selectDistrict} district={district}/>
+                        <Map selectDistrict={selectDistrict} district={district} year = {year} electionData={electionData} districtMapData={districtMapData} isDeviceDesktop={isDeviceDesktop}/>
                     </div>
                 </div>
                 {district !== "전국" ?
                     (district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13) ? 
+                    isDeviceDesktop ?
+                        <h3 className = {styles.noExistence}>
+                            {`제${year}대 대통령 선거 당시 ${district}은 광역자치단체로 분류되지 않았습니다.`}
+                        </h3>
+                        :
+                        <h3 className = {styles.noExistence}>
+                            {`제${year}대 대통령 선거 당시 ${district}은`}<br/>{`광역자치단체로 분류되지 않았습니다.`}
+                        </h3>
                     
-                    <h3 className = {styles.noExistence}>{`제${year}대 대통령 선거 당시 ${district}은 광역자치단체로 분류되지 않았습니다.`}</h3>
                     :
                     <div className = {styles.buttonWrapper}>
                         <button onClick = {showDetailResult}>
@@ -131,10 +142,10 @@ function MainPage() {
                         </svg>
                         </button>
                     </div> 
-                : null}
+                : <div className = {styles.pad}/>}
             </div>
             {district !== "전국" && !((district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13)) ? 
-            <DetailResult year={year} region={district} detailVisible={detailVisible} setDetailVisible={setDetailVisible}/> : null}
+            <DetailResult year={year} region={district} detailVisible={detailVisible} setDetailVisible={setDetailVisible} isDeviceDesktop={isDeviceDesktop}/> : null}
             </div>
         
     

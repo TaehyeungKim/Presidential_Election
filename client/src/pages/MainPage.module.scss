@@ -80,11 +80,15 @@ h2, h3, p {
     }
 }
 
-.buttonWrapper, .container > .buttonWrapper {
+.container > .pad, .buttonWrapper, .container > .buttonWrapper, .noExistence {
     position: relative;
-    width: 100%;
-    height: fit-content;
     margin-bottom: 30px;
+    height: 40px;
+}
+
+
+.buttonWrapper, .container > .buttonWrapper {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -119,6 +123,8 @@ h2, h3, p {
     }
 }
 
+
+
 .frame {
     position: absolute;
     width: 100vw;
@@ -140,9 +146,21 @@ h2, h3, p {
     flex-direction: column;
     justify-content: space-between;
 
-    .noExistence {
+    section {
         position: relative;
-        margin-bottom: 30px;
+        text-align: center;
+        top: 50px;
+        margin-bottom: toRem(20);
+        color: #424242;
+        h2 {
+            font-size: toRem(45);
+        }
+        span {
+            color: #673ab7;
+        }
+    }
+
+    .noExistence {
         text-align: center;
         color: black;
         font-family: 'Do Hyeon', sans-serif;
@@ -175,20 +193,6 @@ h2, h3, p {
         color:  #673ab7;
     }
 
-    section {
-        position: inherit;
-        text-align: center;
-        margin-bottom: toRem(20);
-        color: #424242;
-        span {
-            color: #673ab7;
-        }
-
-        p {
-            font-size: toRem(22);
-        }
-    }
-
     .candidate {
         position: relative;
         width: toRem(200);
@@ -198,36 +202,6 @@ h2, h3, p {
         padding: toRem(25);
         background-color: white;
         animation: floatUp 1s forwards;
-
-        >div {
-            width: fit-content;
-        }
-        .rank {
-            position: relative;
-            bottom: toRem(10);
-            font-size: toRem(30);
-            margin-bottom: toRem(10);
-        }
-    
-        .name {
-            padding: toRem(5);
-            font-size: toRem(28);
-        }
-    
-        .rate {
-            position: relative;
-            top: toRem(5);
-            font-size: toRem(35);
-            font-family: 'Jua', sans-serif;
-        }
-    
-        .party {
-            font-size: toRem(20);
-        }
-
-        img {
-            width: 100%;
-        }
     }
 
     #first {
@@ -241,7 +215,7 @@ h2, h3, p {
     }
 
     #map {
-        order: 2
+        order: 1
     }
 }
 
@@ -266,3 +240,72 @@ h2, h3, p {
 }
 
 
+@media (max-width: 1100px) {
+    .frame {
+        .container {
+            section {
+                h2 {
+                    font-size: toRem(40);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    .frame {
+        .container {
+            section {
+                h2 {
+                    font-size: toRem(35);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    .container > .pad, .buttonWrapper, .container > .buttonWrapper, .noExistence {
+        height: 30px;
+        button {
+            svg {
+                width: toRem(25);
+                height: toRem(20);
+            }
+        }
+    }   
+    .container {
+        .noExistence {
+            font-size: toRem(30);
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .container {
+        .noExistence {
+            font-size: toRem(15);
+        }
+    }
+}
+
+@media (max-width: 380px) {
+    .frame {
+        .container > .pad, .buttonWrapper, .container > .buttonWrapper, .noExistence {
+            height: toRem(30);
+            button {
+                svg {
+                    width: toRem(20);
+                    height: toRem(20);
+                }
+            }
+        }
+        .container {
+            section {
+                h2 {
+                    font-size: toRem(27);
+                }
+            }
+        }
+    }
+}

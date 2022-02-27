@@ -96,3 +96,208 @@
     background-size: 400% 400%;
     animation: floatUp 1s forwards, electAni 4s alternate infinite;
 }
+
+@media (max-width: 1100px) {
+    .candidate {
+        width: 200px;
+    }
+}
+
+@media (max-width: 950px) {
+    .candidate {
+        width: 150px;
+        .rank {
+            position: relative;
+            bottom: toRem(10);
+            font-size: toRem(25);
+            margin-bottom: toRem(10);
+        }
+    
+        .name {
+            padding: toRem(5);
+            font-size: toRem(23);
+        }
+    
+        .rate {
+            position: relative;
+            top: toRem(5);
+            font-size: toRem(30);
+            font-family: 'Jua', sans-serif;
+        }
+    
+        .party {
+            font-size: toRem(18);
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    .candidate {
+        width: 100px;
+        padding: toRem(20);
+        .rank {
+            position: relative;
+            bottom: toRem(5);
+            font-size: toRem(20);
+            margin-bottom: toRem(0);
+        }
+    
+        .name {
+            padding: toRem(5);
+            font-size: toRem(18);
+        }
+    
+        .rate {
+            position: relative;
+            top: toRem(5);
+            font-size: toRem(25);
+            font-family: 'Jua', sans-serif;
+        }
+    
+        .party {
+            font-size: toRem(13);
+        }
+    }
+}
+
+
+
+//mobile
+.mobile_rank, .mobile_name, .mobile_party {
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+.mobile_candidate {
+    position: relative;
+    width: 80%;
+    height: fit-content;
+    border: 2px solid #cfcfcf;
+    border-radius: 20px;
+    padding: toRem(10) toRem(25);
+    background-color: white;
+    animation: floatUp 1s forwards;
+    z-index: 1;
+
+    .mobile_rank {
+        position: relative;
+        font-size: toRem(30);
+        text-align: center;
+    }
+
+    .mobile_candContent {
+        position: relative;
+        height: 80px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        .mobile_name {
+            padding: toRem(5);
+            font-size: toRem(28);
+            text-align: center;
+        }
+    
+        .mobile_rate {
+            position: relative;
+            top: toRem(5);
+            font-size: toRem(35);
+            font-family: 'Jua', sans-serif;
+            width: 200px;
+            text-align: center;
+        }
+    
+        .mobile_party {
+            font-size: toRem(20);
+            text-align: center;
+        }
+        img {
+            height: 100%
+        }
+        .mobile_infoContainer {
+            position: relative;
+            width: fit-content;
+            margin: initial;
+        }
+        
+    }
+    
+}
+
+#mobile_first {
+    order: 2;
+}
+
+#mobile_second {
+    order: 3;
+}
+
+#mobile_elected {
+    order: 2;
+    background: rgb(249,248,113);
+    background: linear-gradient(90deg, rgba(249,248,113,1) 0%, rgba(255,178,119,1) 50%, rgba(255,255,255,1) 100%);
+    background-size: 400% 400%;
+    animation: floatUp 1s forwards, electAni 4s alternate infinite;
+}
+
+@media (max-width: 450px) {
+    .mobile_candidate {
+        .mobile_rank {
+            position: relative;
+            font-size: toRem(20);
+            text-align: center;
+        }
+    
+        .mobile_candContent {
+            height: 60px;
+            .mobile_name {
+                padding: toRem(5);
+                font-size: toRem(20);
+                text-align: center;
+            }
+        
+            .mobile_rate {
+                top: toRem(5);
+                font-size: toRem(20);
+                width: 100px;
+            }
+        
+            .mobile_party {
+                font-size: toRem(15);
+                text-align: center;
+            }
+            
+        }
+        
+    }
+}
+
+@media (max-width: 300px) {
+    .mobile_candidate {
+        padding: toRem(10) toRem(15);
+        .mobile_rank {
+            font-size: toRem(15);
+        }
+    
+        .mobile_candContent {
+            height: 60px;
+            .mobile_name {
+                padding: toRem(5);
+                font-size: toRem(15);
+                text-align: center;
+            }
+        
+            .mobile_rate {
+                top: toRem(5);
+                font-size: toRem(20);
+                width: 80px;
+            }
+        
+            .mobile_party {
+                font-size: toRem(10);
+                text-align: center;
+            }
+            
+        }
+        
+    }
+}

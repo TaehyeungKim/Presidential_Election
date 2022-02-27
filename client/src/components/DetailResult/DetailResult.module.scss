@@ -55,6 +55,11 @@ body {
     height: 100%;
     top: 100%;
     transition: transform 1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    overflow-y: scroll;
 
     .detailHeader {
         text-align: center;
@@ -70,73 +75,25 @@ body {
         h1 {
             color: #673ab7;
         }
+        @media (max-width: 800px) {
+            h1 {
+                font-size: toRem(25);
+            }
+            h3 {
+                font-size: toRem(15);
+            }
+        }
     }
-
-    .detailContent {
-        position: absolute;
-        left: 0;
-        right: 0;
+    .flex_box {
         display: flex;
-        justify-content: flex-end;
-        font-family: 'Jua', 'sans-serif';
+        justify-content: space-between;
         
-        .statContainer {
+        .detailContent {
             position: relative;
-            max-width: 1000px;
-            white-space: nowrap; /***/
-            overflow-x: hidden;
-            margin-right: 30px;
-            background-color: white;
-            border: 2px solid #cfcfcf;
-            border-radius: 10px;
-            //flex
+            width: fit-content;
             display: flex;
-            align-items: center;
-            button {
-                position: absolute;
-                z-index: 5;
-            }
-            #left {
-                left: 0;
-            }
-            #right {
-                right: 0;
-            }
-            ul {
-                position: relative;
-                list-style-type: none;                
-                margin: 0;
-                padding: 0;
-                li {
-                    width: fit-content;
-                    display: inline-block;
-            
-                    .cand {
-                        width: toRem(90);
-                        .candStatBarArea {
-                            position: relative;
-                            height: 600px;
-                            box-sizing: border-box;
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            justify-content: flex-end;
-                            margin-bottom: 10px;
-                            .statBar {
-                                position: relative;
-                                border: 2px solid black;
-                                bottom: 0;
-                                width: 70%;
-                                transition: height 1s;
-                            }
-                        }
-                        .candName {
-                            text-align: center;
-                        }
-                    }
-                }
-            }
-            
+            font-family: 'Jua', 'sans-serif';
+            margin-bottom: 30px;
         }
     }
 }

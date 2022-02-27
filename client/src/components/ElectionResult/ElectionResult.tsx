@@ -8,10 +8,11 @@ interface VoteRateProps {
     img: string,
     info: any,
     district: string,
-    year: number;
+    year: number,
+    isDeviceDesktop: boolean;
 }
 
-function VoteRate({voteNum, rank, img, info, district, year}: VoteRateProps) {
+function VoteRate({voteNum, rank, img, info, district, year, isDeviceDesktop}: VoteRateProps) {
 
     const [voteRate, setVoteRate] = useState<number>(0);
     const updated = useRef(0);
@@ -36,23 +37,40 @@ function VoteRate({voteNum, rank, img, info, district, year}: VoteRateProps) {
     
     return(
         <>
+        {isDeviceDesktop ? 
+        <>
             <div className = {styles.rank}>{district === "전국" && rank===1 ? "당선" : `${rank}위`}</div>
             <img src = {img}/>
             <div className = {styles.name}>{info[1]}</div>
             <div className = {styles.party}>{info[0]}</div>
             <div className = {styles.rate} style = {(district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13) ? {opacity: 0} : {opacity: 1}}>{voteRate}%</div>
         </>
+        :
+        <> 
+            <div className = {styles.mobile_rank}>{district === "전국" && rank===1 ? "당선" : `${rank}위`}</div>
+            <div className = {styles.mobile_candContent}>         
+                <img src = {img}/>
+                <div>
+                    <div className = {styles.mobile_name}>{info[1]}</div>
+                    <div className = {styles.mobile_party}>{info[0]}</div>
+                </div>
+                <div className = {styles.mobile_rate} style = {(district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13) ? {opacity: 0} : {opacity: 1}}>{voteRate}%</div>
+            </div>
+        </>}
+    </>
     )
 }
+
 
 interface ElectionResultProps {
     electionData: any
     year: number,
     district: string,
-    districtMapData:(year: number) => any;
+    districtMapData:(year: number) => any,
+    isDeviceDesktop: boolean;
 }
 
-function ElectionResult({electionData, year, district, districtMapData}:ElectionResultProps) {
+function ElectionResult({electionData, year, district, districtMapData, isDeviceDesktop}:ElectionResultProps) {
 
     return(
         <>
@@ -89,12 +107,26 @@ function ElectionResult({electionData, year, district, districtMapData}:Election
                     }
                     return (
                         <>
+                            {isDeviceDesktop === true ?
+                            <>
                             <div className={styles.candidate} id={district === "전국" ? styles.elected : styles.first}>
-                                <VoteRate voteNum={Math.floor(((arr[0].voteNum[districtMapData(year)[`${district}`]]/electionData.계[districtMapData(year)[`${district}`]])*10000))/100} rank={1} img={first} info={arr[0].name.split("_")} district={district} year={year}/>
+                                <VoteRate voteNum={Math.floor(((arr[0].voteNum[districtMapData(year)[`${district}`]]/electionData.계[districtMapData(year)[`${district}`]])*10000))/100} rank={1} img={first} info={arr[0].name.split("_")} district={district} year={year} isDeviceDesktop={isDeviceDesktop}/>
                             </div>
                             <div className = {styles.candidate} id = {styles.second}>
-                                <VoteRate voteNum = {Math.floor(((arr[1].voteNum[districtMapData(year)[`${district}`]]/electionData.계[districtMapData(year)[`${district}`]])*10000))/100} rank={2} img={second} info={arr[1].name.split("_")} district={district} year={year}/>
+                                <VoteRate voteNum = {Math.floor(((arr[1].voteNum[districtMapData(year)[`${district}`]]/electionData.계[districtMapData(year)[`${district}`]])*10000))/100} rank={2} img={second} info={arr[1].name.split("_")} district={district} year={year} isDeviceDesktop={isDeviceDesktop}/>
+                            </div> 
+                            </>
+                            :
+                            <>
+                            <div className={styles.mobile_candidate} id={district === "전국" ? styles.mobile_elected : styles.mobile_first}>
+                                <VoteRate voteNum={Math.floor(((arr[0].voteNum[districtMapData(year)[`${district}`]]/electionData.계[districtMapData(year)[`${district}`]])*10000))/100} rank={1} img={first} info={arr[0].name.split("_")} district={district} year={year} isDeviceDesktop={isDeviceDesktop}/>
                             </div>
+                            <div className = {styles.mobile_candidate} id = {styles.mobile_second}>
+                                <VoteRate voteNum = {Math.floor(((arr[1].voteNum[districtMapData(year)[`${district}`]]/electionData.계[districtMapData(year)[`${district}`]])*10000))/100} rank={2} img={second} info={arr[1].name.split("_")} district={district} year={year} isDeviceDesktop={isDeviceDesktop}/>
+                            </div> 
+                            </>
+                            }   
+                            
                         </>)
             }
         })()}

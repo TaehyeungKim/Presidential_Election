@@ -19,7 +19,6 @@
 
 .wrapper {
     position: relative;
-    margin-right: 30px;
     //flex
     display: flex;
     align-items: center;
@@ -73,7 +72,7 @@
                 width: toRem(100);
                 .candStatBarArea {
                     position: relative;
-                    height: 600px;
+                    height: 550px;
                     box-sizing: border-box;
                     display: flex;
                     flex-direction: column;
@@ -100,4 +99,12 @@
         }
     }
     
+}
+
+@for $i from 14 through 7 {
+    @media (max-width: ($i * 100px)) {
+        .statContainer {
+            max-width: (($i - 5) * 100px);
+        }
+    }
 }

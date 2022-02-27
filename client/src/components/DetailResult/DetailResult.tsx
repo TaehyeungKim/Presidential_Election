@@ -3,16 +3,18 @@ import dataProcess from '../../functions/dataProcess'
 import styles from './DetailResult.module.scss'
 import DetailRegionSelector from '../DetailRegionSelector/DetailRegionSelector'
 import DetailStat from '../DetailStat/DetailStat'
+import MobileDetailStat from '../DetailStat/MobileDetailStat'
 
 
 interface DetailResultProps {
     year: number,
     region: string,
     detailVisible: boolean,
-    setDetailVisible:(bool: boolean)=>void;
+    setDetailVisible:(bool: boolean)=>void,
+    isDeviceDesktop: boolean;
 }
 
-function DetailResult({year, region, detailVisible, setDetailVisible}:DetailResultProps) {
+function DetailResult({year, region, detailVisible, setDetailVisible, isDeviceDesktop}:DetailResultProps) {
     const [detailResutData, setDetailResultData] = useState<any>();
     const [detailRegion, setDetailRegion] = useState<string>("");
     const [regionArr, setRegionArr] = useState<Array<string>>([]);
@@ -98,9 +100,13 @@ function DetailResult({year, region, detailVisible, setDetailVisible}:DetailResu
                         <h1>{region + " " + detailRegion}</h1>
                         <h3>투표율: {Math.floor(detailResutData.투표수[searchThroughArr(regionArr, detailRegion)]/detailResutData.선거인수[searchThroughArr(regionArr, detailRegion)] * 10000)/100}%</h3>
                     </div>
-                    <DetailRegionSelector regionArr={regionArr} detailRegion={detailRegion} setDetailRegion={setDetailRegion}/>
-                    <div className = {styles.detailContent}>
-                        <DetailStat arr={arr} regionArr={regionArr} detailRegion={detailRegion} searchThroughArr={searchThroughArr} detailResutData={detailResutData} detailVisible={detailVisible} year = {year}/>
+                    <div className = {styles.flex_box}>
+                        <DetailRegionSelector regionArr={regionArr} detailRegion={detailRegion} setDetailRegion={setDetailRegion} isDeviceDesktop={isDeviceDesktop}/>
+                        <div className = {styles.detailContent} style = {isDeviceDesktop ? {justifyContent: "flex-end"} : {justifyContent:"flex-start"}}>
+                            {isDeviceDesktop ? 
+                            <DetailStat arr={arr} regionArr={regionArr} detailRegion={detailRegion} searchThroughArr={searchThroughArr} detailResutData={detailResutData} detailVisible={detailVisible} year = {year}/>
+                            :<MobileDetailStat arr={arr} regionArr={regionArr} detailRegion={detailRegion} searchThroughArr={searchThroughArr} detailResutData={detailResutData} detailVisible={detailVisible} year = {year}/> }       
+                        </div>
                     </div>
                 </div>)})()}
         

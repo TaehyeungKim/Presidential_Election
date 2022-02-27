@@ -5,11 +5,51 @@
 
 $headerHeight: 60;
 
+h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+
+
 .container {
     position: relative;
     top: 0;
     width: fit-content;
     margin: 0 auto 0;
+    .district {
+        position: relative;
+        text-align: center;
+        margin-bottom: 30px;
+
+        .regVoteContainer {
+            h3 {
+                margin-top: toRem(10);
+                font-family: 'Jua', sans-serif;
+                font-size: toRem(40);
+                color:  #673ab7;
+            }
+            
+            p {
+                font-size: toRem(30);
+                font-family: 'Do Hyeon', sans-serif;
+            }
+        }
+
+        .mobile_regVoteContainer {
+            h3 {
+                margin-top: toRem(10);
+                font-family: 'Jua', sans-serif;
+                font-size: toRem(40);
+                color:  #673ab7;
+            }
+            
+            p {
+                font-size: toRem(30);
+                font-family: 'Do Hyeon', sans-serif;
+            }
+        }
+    }
     
     .whole {
         background-color: white;
@@ -22,7 +62,7 @@ $headerHeight: 60;
             background-color: aqua;
         }
     }
-    svg {
+    .map {
         position: relative;
         $mapWidth: 340;
         margin: 0;
@@ -30,4 +70,134 @@ $headerHeight: 60;
         width: toRem($mapWidth);
         height: toRem(($mapWidth * 3/2));
     }
+
+    .mobile_map {
+        position: relative;
+        $mapWidth: 400;
+        margin: 0;
+        padding: 0;
+        width: toRem($mapWidth);
+        height: toRem(($mapWidth * 3/2));
+    }
+}
+
+@media (max-width: 1100px) {
+    .container {
+        .district {
+            .regVoteContainer {
+                h3 {
+                    font-size: toRem(35);
+                }
+                p {
+                    font-size: toRem(25);
+                }
+            }
+            .mobile_regVoteContainer {
+                h3 {
+                    font-size: toRem(45);
+                }
+                p {
+                    font-size: toRem(25);
+                }
+            }
+        }
+        .map {
+            $mapWidth: 280;
+            width: toRem($mapWidth);
+            height: toRem(($mapWidth * 3/2));
+        } 
+    }
+}
+
+@media (max-width: 950px) {
+    .container {
+        .district {
+            .regVoteContainer {
+                h3 {
+                    font-size: toRem(30);
+                }
+                p {
+                    font-size: toRem(20);
+                }
+            }
+            .mobile_regVoteContainer {
+                h3 {
+                    font-size: toRem(35);
+                }
+                p {
+                    font-size: toRem(25);
+                }
+            }
+        }
+        .map {
+            $mapWidth: 230;
+            width: toRem($mapWidth);
+            height: toRem(($mapWidth * 3/2));
+        } 
+        .mobile_map {
+            $mapWidth: 350;
+            width: toRem($mapWidth);
+            height: toRem(($mapWidth * 3/2));
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .container {
+        .mobile_map {
+            $mapWidth: 300;
+            width: toRem($mapWidth);
+            height: toRem(($mapWidth * 3/2));
+        }
+    }
+}
+
+
+@media (max-width: 750px) {
+    .container {
+        .district {
+            .regVoteContainer {
+                h3 {
+                    font-size: toRem(25);
+                }
+                p {
+                    font-size: toRem(15);
+                }
+            }
+            .mobile_regVoteContainer {
+                h3 {
+                    font-size: toRem(30);
+                }
+                p {
+                    font-size: toRem(20);
+                }
+            }
+        }
+        .map {
+            $mapWidth: 180;
+            width: toRem($mapWidth);
+            height: toRem(($mapWidth * 3/2));
+        } 
+    }
+}
+
+@media (max-width: 380px) {
+    .container {
+        .district {
+            .mobile_regVoteContainer {
+                h3 {
+                    font-size: toRem(20);
+                }
+                p {
+                    font-size: toRem(15);
+                }
+            }
+        }
+        .mobile_map {
+            $mapWidth: 220;
+            width: toRem($mapWidth);
+            height: toRem(($mapWidth * 3/2));
+        }
+    }
+    
 }

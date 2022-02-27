@@ -5,8 +5,13 @@
     @return $remValue;
 }
 
+@keyframes mobileSelectorAppear {
+    0% {
+    }
+}
+
 .selector {
-    position: absolute;
+    position: relative;
     left: 30px;
     width: 250px;
     font-family: "Jua", 'sans-serif';
@@ -81,5 +86,102 @@
             }
         }
 
+    }
+}
+
+//mobile 
+
+.mobile_selector {
+    position: relative;
+    width: 200px;
+    font-family: "Jua", 'sans-serif';
+    z-index: 10;
+    order: 2;
+    align-self: flex-end;
+    bottom: toRem(30);
+    
+
+    .mobile_selectorHeader {
+        position: relative;
+        background-color: #673ab7;
+        color: white;
+        text-align: center;
+        padding: toRem(10) 0 toRem(10);
+        h3 {
+            padding: 0;
+            margin: 0;
+            font-weight: normal;
+            font-size: toRem(23);
+        }
+    }
+
+    .mobile_regionContainer {
+        position: relative;
+        max-height: toRem(500);
+        overflow-y: scroll;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+        .mobile_wrapper {
+            position: relative;
+            .mobile_region {
+                box-sizing: border-box;
+                border-bottom: 1px solid #808080;
+                font-size: toRem(25);
+                background-color: white;
+                padding: toRem(10) 0 toRem(10) toRem(5);
+                transition: background-color 0.2s;
+                &:hover {
+                    background-color: #B5B5B5;
+                    cursor: pointer;
+                }
+            }
+            #selected {
+                background: rgb(255,223,223);
+                background: linear-gradient(90deg, rgba(255,223,223,1) 0%, rgba(255,255,255,1) 100%);
+                color: purple;
+            }    
+        }
+           
+    }
+    .mobile_selectorFooter {
+        background-color: #673ab7;
+        height: 30px;
+        >div {
+            position: relative;
+            width: fit-content;
+            margin: 0 auto 0;
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    .mobile_selector {
+        width: 150px;
+    }
+}
+
+@media(max-width: 550px) {
+    .mobile_selector {
+        width: 100px;
+        position: absolute;
+        right: 10px;
+        bottom: 20px;
+
+        .mobile_selectorHeader {
+            h3 {
+                font-size: toRem(15);
+            }
+        }
+        .mobile_regionContainer {
+            max-height: toRem(200);
+            .mobile_wrapper {
+                .mobile_region {
+                    font-size: toRem(20);
+                }
+            }
+        }
+        .mobile_selectorFooter {
+            height: toRem(15);
+        }
     }
 }
