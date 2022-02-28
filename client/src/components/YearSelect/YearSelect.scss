@@ -78,3 +78,24 @@
         animation-fill-mode: forwards;
     }
 }
+
+@media (max-width: 500px) {
+    .bar {
+        font-size: 20px;
+        padding: 15px 15px 15px 35px;
+    }
+}
+
+@media (max-width: 350px) {
+    .bar {
+        font-size: 15px;
+        padding: 10px 10px 10px 25px;
+    }
+}
+
+@media (max-width: 300px) {
+    .bar {
+        font-size: 13px;
+        padding: 10px 5px 10px 10px;
+    }
+}

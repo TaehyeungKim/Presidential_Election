@@ -37,33 +37,33 @@ const candidates = [
         "심상정": {image: Sim_19, colorId: "SimNine"}
     }},
     {number: 18, candidates: {
-        "박근혜": {image: Park_18, colorId:""},
-        "문재인": {image: Moon_18, colorId:""}
+        "박근혜": {image: Park_18, colorId:"ParkEight"},
+        "문재인": {image: Moon_18, colorId:"MoonEight"}
     }},
     {number: 17, candidates: {
-        "정동영": {image: Jung_17, colorId:""},
-        "이명박": {image: Lee_17, colorId:""},
-        "이회창": {image: LHC_17, colorId:""}
+        "정동영": {image: Jung_17, colorId:"DYSeven"},
+        "이명박": {image: Lee_17, colorId:"MBSeven"},
+        "이회창": {image: LHC_17, colorId:"HCSeven"}
     }},
     {number: 16, candidates: {
-        "이회창": {image: Lee_16, colorId:""},
-        "노무현": {image: Roh_16, colorId:""}
+        "이회창": {image: Lee_16, colorId:"HCSix"},
+        "노무현": {image: Roh_16, colorId:"MHSix"}
     }},
     {number: 15, candidates: {
-        "김대중": {image: Kim_15, colorId:""},
-        "이회창": {image: Lee_15, colorId:""},
-        "이인제": {image: LIJ_15, colorId:""}
+        "김대중": {image: Kim_15, colorId:"DJFive"},
+        "이회창": {image: Lee_15, colorId:"HCFive"},
+        "이인제": {image: LIJ_15, colorId:"IJFive"}
     }},
     {number: 14, candidates: {
-        "김대중": {image: DJ_14, colorId:""},
-        "김영삼": {image: YS_14, colorId:""},
-        "정주영": {image: JY_14, colorId:""}
+        "김대중": {image: DJ_14, colorId:"DJFour"},
+        "김영삼": {image: YS_14, colorId:"YSFour"},
+        "정주영": {image: JY_14, colorId:"JYFour"}
     }},
     {number: 13, candidates: {
-        "노태우":{image: TW_13, colorId:""},
-        "김영삼":{image: YS_13, colorId:""},
-        "김대중":{image: DJ_13, colorId:""},
-        "김종필":{image: JP_13, colorId:""}
+        "노태우":{image: TW_13, colorId:"TWThree"},
+        "김영삼":{image: YS_13, colorId:"YSThree"},
+        "김대중":{image: DJ_13, colorId:"DJThree"},
+        "김종필":{image: JP_13, colorId:"JPThree"}
     }}
 ]
 

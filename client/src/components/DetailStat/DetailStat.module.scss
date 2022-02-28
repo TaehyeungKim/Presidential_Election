@@ -19,9 +19,11 @@
 
 .wrapper {
     position: relative;
+    font-family: 'Jua', 'sans-serif';
     //flex
     display: flex;
     align-items: center;
+    margin-right: 30px;
     button {
         position: absolute;
         z-index: 5;
@@ -81,7 +83,7 @@
                     margin-bottom: 10px;
                     .statBar {
                         position: relative;
-                        border: 2px solid black;
+                        border: 2px solid #cfcfcf;
                         bottom: 0;
                         width: 70%;
                         transition: height 1s;

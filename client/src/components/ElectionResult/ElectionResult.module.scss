@@ -49,6 +49,8 @@
 
     >div {
         width: fit-content;
+        margin: 0 auto 0;
+        position: relative;
     }
     .rank {
         position: relative;
@@ -163,6 +165,7 @@
 
 
 //mobile
+
 .mobile_rank, .mobile_name, .mobile_party {
     font-family: 'Do Hyeon', sans-serif;
 }
@@ -171,6 +174,7 @@
     position: relative;
     width: 80%;
     height: fit-content;
+    margin: 0 auto 0;
     border: 2px solid #cfcfcf;
     border-radius: 20px;
     padding: toRem(10) toRem(25);

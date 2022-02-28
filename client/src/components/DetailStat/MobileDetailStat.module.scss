@@ -21,6 +21,8 @@
     width: 70vw;
     position: relative;
     order: 1;
+    font-family: 'Jua', 'sans-serif';
+    margin-left: 10px;
 }
 
 .statContainer {
@@ -71,7 +73,7 @@
                     justify-content: flex-start;
                     .statBar {
                         position: relative;
-                        border: 2px solid black;
+                        border: 2px solid #cfcfcf;
                         height: 70%;
                         transition: width 1s;
                         animation: colorAni 2s alternate infinite;
@@ -90,6 +92,9 @@
 }
 
 @media (max-width: 550px) {
+    .wrapper {
+        margin-left: 0;
+    }
     .statContainer {
         width: 100vw;
         ul {

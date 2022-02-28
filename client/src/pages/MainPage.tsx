@@ -3,9 +3,11 @@ import Map from '../components/Map/Map'
 
 import styles from './MainPage.module.scss'
 import yearSelectButton from '../images/yearSelectButton.png'
+import HamburgerIcon from '../images/Hamburger_icon.png'
 import YearSelect from '../components/YearSelect/YearSelect'
 import ElectionResult from '../components/ElectionResult/ElectionResult'
 import DetailResult from '../components/DetailResult/DetailResult'
+import MovePageButton from '../components/MovePageButton/MovePageButton'
 import dataProcess from '../functions/dataProcess'
 import UseMediaQuery from '../customHooks/useMediaQuery'
 
@@ -119,7 +121,7 @@ function MainPage() {
                 <div className = {styles.wrapper} style = {isDeviceDesktop ? {flexDirection: "row"} : {flexDirection:"column"}}>
                     {(district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13) ? null :
                     <ElectionResult electionData={electionData} year={year} district={district} districtMapData={districtMapData} isDeviceDesktop={isDeviceDesktop}/>}
-                    <div id = {styles.map}>
+                    <div id = {isDeviceDesktop ? styles.map : styles.mobile_map}>
                         <Map selectDistrict={selectDistrict} district={district} year = {year} electionData={electionData} districtMapData={districtMapData} isDeviceDesktop={isDeviceDesktop}/>
                     </div>
                 </div>
@@ -135,14 +137,9 @@ function MainPage() {
                         </h3>
                     
                     :
-                    <div className = {styles.buttonWrapper}>
-                        <button onClick = {showDetailResult}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-                        </svg>
-                        </button>
-                    </div> 
-                : <div className = {styles.pad}/>}
+                    <MovePageButton movePage={showDetailResult} direction = {"down"}/> 
+                : <div className = {styles.pad}>
+                    <div/></div>}
             </div>
             {district !== "전국" && !((district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13)) ? 
             <DetailResult year={year} region={district} detailVisible={detailVisible} setDetailVisible={setDetailVisible} isDeviceDesktop={isDeviceDesktop}/> : null}

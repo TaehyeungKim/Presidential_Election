@@ -10,45 +10,6 @@ body {
     overflow-y: hidden;
 }
 
-.buttonWrapper {
-    position: relative;
-    top: toRem(10);
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    button {
-        font-family: 'Jua', 'sans-serif';
-        font-size: toRem(20);
-        border: none;
-        background-color: #673ab7;
-        
-        border-radius: toRem(10);
-        padding: toRem(5) toRem(30) 0;
-        cursor: pointer;
-        transition: 0.2s;
-
-        svg {
-            width: toRem(30);
-            height: toRem(25);
-            path {
-                stroke: white;
-            }
-        }
-
-        &:hover {
-            background-color: white;
-            svg {
-                path {
-                    stroke: #673ab7;
-                }
-            }
-            
-        }
-    }
-}
-
 .detail {
     position: absolute;
     width: 100%;
@@ -87,14 +48,7 @@ body {
     .flex_box {
         display: flex;
         justify-content: space-between;
-        
-        .detailContent {
-            position: relative;
-            width: fit-content;
-            display: flex;
-            font-family: 'Jua', 'sans-serif';
-            margin-bottom: 30px;
-        }
+        margin-bottom: 50px;
     }
 }
 
