@@ -75,6 +75,18 @@
                 .candStatBarArea {
                     position: relative;
                     height: 550px;
+                    @media (max-height: 800px) {
+                        height: 500px;
+                    }
+                    @media (max-height: 760px) {
+                        height: 450px;
+                    }
+                    @media (max-height: 700px) {
+                        height: 400px;
+                    }
+                    @media (max-height: 650px) {
+                        height: 320px;
+                    }
                     box-sizing: border-box;
                     display: flex;
                     flex-direction: column;

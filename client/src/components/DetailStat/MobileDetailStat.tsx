@@ -1,6 +1,46 @@
 import {useState, useRef, useEffect} from 'react'
 import candidates from '../../utils/candiates'
 import styles from './MobileDetailStat.module.scss'
+import {debounce} from 'lodash'
+
+
+interface MobileStatBarProps {
+    rate: number,
+    color: string,
+    detailVisible: boolean,
+    name: string,
+    party: string,
+    stat: number
+}
+
+function MobileStatBar({rate, color, detailVisible, name, party, stat}:MobileStatBarProps) {
+    const statBarContainer = useRef<HTMLDivElement>(null);
+    const [windowSize, setWindowSize] = useState<any>({
+        width: window.innerWidth,
+        height: window.innerHeight
+    });
+
+    const re_render = debounce(()=>{
+        setWindowSize({
+            width: window.innerWidth,
+            height: window.innerHeight
+        })
+    }, 500)
+
+    useEffect(()=>{
+        window.addEventListener('resize', re_render)
+        return ()=>window.removeEventListener('resize', re_render)
+    },[])
+    return(
+        <div className = {styles.cand}>
+            <div className = {styles.candName}><span>{name}</span><br/>{party}</div>
+            <div className = {styles.candStatBarArea} ref = {statBarContainer}>
+                <div className = {styles.statBar} id = {`${color}`} style = {detailVisible === true ? {width: `${((stat/100) * (statBarContainer.current?.offsetWidth as number)) * 0.8}px`} : {width: "0px"}}/>
+                <div className = {styles.rate}>{rate}%</div>
+            </div>
+        </div>
+    )
+}
 
 interface MobileDetailCandidateProps {
     idx: number,
@@ -48,14 +88,8 @@ function MobileDetailCandidate({idx, stat, detailVisible, vote, year}:MobileDeta
         numberAnimation()
         return()=>{setRate(0);updated.current = 0;clearTimeout()}},[stat, detailVisible])
     return(
-        <li key={idx}> 
-            <div className = {styles.cand}>
-                <div className = {styles.candName}><span>{name}</span><br/>{party}</div>
-                <div className = {styles.candStatBarArea} ref = {barArea}>
-                    <div className = {styles.statBar} id = {`${color}`} style = {detailVisible === true ? {width: `${((stat/100) * (barArea.current?.offsetWidth as number)) * 0.8}px`} : {width: "0px"}}/>
-                    <div className = {styles.rate}>{rate}%</div>
-                </div>
-            </div>
+        <li key={idx}>
+            <MobileStatBar rate = {rate} color = {color} detailVisible = {detailVisible} name = {name} party = {party} stat = {stat}/> 
         </li>
     )
 }

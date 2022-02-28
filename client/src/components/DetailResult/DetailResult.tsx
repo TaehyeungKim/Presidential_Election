@@ -93,7 +93,7 @@ function DetailResult({year, region, detailVisible, setDetailVisible, isDeviceDe
                         }
                     }
         }
-        return (<div className = {styles.detail} id = {detailVisible === true ? styles.moveUpward : undefined}>
+        return (<div className = {styles.detail} id = {detailVisible === true ? styles.moveUpward : undefined} style = {isDeviceDesktop ? undefined : {justifyContent: "initial"}}>
                     <MovePageButton movePage={showMainPage} direction = {"up"}/> 
                     <div className = {styles.detailHeader}>
                         <h1>{region + " " + detailRegion}</h1>

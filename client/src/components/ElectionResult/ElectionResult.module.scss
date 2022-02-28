@@ -38,7 +38,7 @@
 
 .candidate {
     position: relative;
-    width: 250px;
+    width: 230px;
     height: fit-content;
     border: 2px solid #cfcfcf;
     border-radius: 20px;
@@ -101,7 +101,39 @@
 
 @media (max-width: 1100px) {
     .candidate {
-        width: 200px;
+        width: 180px;
+        @media (max-height: 750px) {
+            width: 130px;
+            .rank {
+                font-size: toRem(22);
+            }
+            .name {
+                font-size: toRem(25);
+            }
+            .rate {
+                font-size: toRem(27);
+            }
+            .party {
+                font-size: toRem(17);
+            }
+        }
+        @media (max-height: 650px) {
+            width: 110px;
+            .rank {
+                font-size: toRem(20);
+                margin-bottom: 3px;
+            }
+            .name {
+                font-size: toRem(25);
+            }
+            .rate {
+                font-size: toRem(27);
+            }
+            .party {
+                font-size: toRem(15);
+            }
+        }
+        
     }
 }
 
@@ -109,7 +141,6 @@
     .candidate {
         width: 150px;
         .rank {
-            position: relative;
             bottom: toRem(10);
             font-size: toRem(25);
             margin-bottom: toRem(10);
@@ -120,11 +151,9 @@
             font-size: toRem(23);
         }
     
-        .rate {
-            position: relative;
+        .rate {  
             top: toRem(5);
             font-size: toRem(30);
-            font-family: 'Jua', sans-serif;
         }
     
         .party {
@@ -138,7 +167,6 @@
         width: 100px;
         padding: toRem(20);
         .rank {
-            position: relative;
             bottom: toRem(5);
             font-size: toRem(20);
             margin-bottom: toRem(0);
@@ -150,10 +178,8 @@
         }
     
         .rate {
-            position: relative;
             top: toRem(5);
             font-size: toRem(25);
-            font-family: 'Jua', sans-serif;
         }
     
         .party {

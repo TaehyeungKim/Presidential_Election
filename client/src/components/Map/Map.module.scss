@@ -64,7 +64,7 @@ h3, p {
     }
     .map {
         position: relative;
-        $mapWidth: 340;
+        $mapWidth: 310;
         margin: 0;
         padding: 0;
         width: toRem($mapWidth);
@@ -87,9 +87,15 @@ h3, p {
             .regVoteContainer {
                 h3 {
                     font-size: toRem(35);
+                    @media (max-height: 650px) {
+                        font-size: toRem(30);
+                    }
                 }
                 p {
                     font-size: toRem(25);
+                    @media (max-height: 650px) {
+                        font-size: toRem(20);
+                    }
                 }
             }
             .mobile_regVoteContainer {
@@ -103,8 +109,14 @@ h3, p {
         }
         .map {
             $mapWidth: 280;
+            @media (max-height: 750px) {
+                $mapWidth: 250;   
+            }
+            @media (max-height: 650px) {
+                $mapWidth: 180;
+            } 
             width: toRem($mapWidth);
-            height: toRem(($mapWidth * 3/2));
+            height: toRem(($mapWidth * 3/2));   
         } 
     }
 }

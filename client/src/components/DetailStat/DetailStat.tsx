@@ -1,9 +1,47 @@
 import React, {useState, useRef, useEffect} from 'react'
+import {debounce} from 'lodash'
 
 import styles from './DetailStat.module.scss'
 import './BarColor.scss'
 
 import candidates from '../../utils/candiates'
+interface StatBarProps {
+    rate: number,
+    color: string,
+    detailVisible: boolean,
+    name: string,
+    party: string,
+    stat: number
+}
+
+function StatBar({rate, color, detailVisible, name, party, stat}:StatBarProps) {
+    const statBarContainer = useRef<HTMLDivElement>(null);
+    const [windowSize, setWindowSize] = useState<any>({
+        width: window.innerWidth,
+        height: window.innerHeight
+    });
+
+    const re_render = debounce(()=>{
+        setWindowSize({
+            width: window.innerWidth,
+            height: window.innerHeight
+        })
+    }, 500)
+
+    useEffect(()=>{
+        window.addEventListener('resize', re_render)
+        return ()=>window.removeEventListener('resize', re_render)
+    },[])
+    return(
+        <div className = {styles.cand}>
+            <div className = {styles.candStatBarArea} ref = {statBarContainer}>
+                <div>{rate}%</div>
+                <div className = {styles.statBar} id = {`${color}`} style = {detailVisible === true ? {height: `${(stat/100) * (statBarContainer.current?.offsetHeight as number)}px`} : {height: "0px"}}/>
+            </div>
+            <div className = {styles.candName}><span>{name}</span><br/>{party}</div>
+        </div>
+    )
+}
 
 interface DetailCandidateProps {
     idx: number,
@@ -49,13 +87,7 @@ function DetailCandidate({idx, stat, detailVisible, vote, year}:DetailCandidateP
         return()=>{setRate(0);updated.current = 0;clearTimeout()}},[stat, detailVisible])
     return(
         <li key={idx}> 
-            <div className = {styles.cand}>
-                <div className = {styles.candStatBarArea}>
-                    <div>{rate}%</div>
-                    <div className = {styles.statBar} id = {`${color}`} style = {detailVisible === true ? {height: `${(stat/100) * 550}px`} : {height: "0px"}}/>
-                </div>
-                <div className = {styles.candName}><span>{name}</span><br/>{party}</div>
-            </div>
+            <StatBar rate = {rate} color = {color} detailVisible = {detailVisible} name = {name} party = {party} stat = {stat}/>
         </li>
     )
 }

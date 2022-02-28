@@ -34,6 +34,12 @@
     .regionContainer {
         position: relative;
         max-height: toRem(405);
+        @media (max-height: 700px) {
+            max-height: toRem(350);
+        }
+        @media (max-height: 650px) {
+            max-height: toRem(300);
+        }
         overflow-y: hidden;
         box-sizing: border-box;
         scroll-behavior: smooth;
