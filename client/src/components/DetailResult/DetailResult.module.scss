@@ -50,10 +50,17 @@ body {
 .flex_box {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 50px;
+    margin-bottom: 50pxl
 }
 
 
 #moveUpward {
     transform: translateY(-100%);
+}
+
+@media (max-width: 550px) {
+    .flex_box {
+        flex-direction: column;
+        justify-content: initial;
+    }
 }

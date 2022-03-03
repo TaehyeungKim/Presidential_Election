@@ -104,7 +104,7 @@
     z-index: 10;
     order: 2;
     align-self: flex-end;
-    bottom: toRem(30);
+    margin-bottom: 5px;
     
 
     .mobile_selectorHeader {
@@ -168,26 +168,45 @@
 
 @media(max-width: 550px) {
     .mobile_selector {
-        width: 100px;
-        position: absolute;
-        right: 10px;
-        bottom: 20px;
+        width: 100%;
+        position: relative;
+        height: 130px;
+        order: 1;
+        align-self: initial;
+        display: flex;
+        flex-direction: row;
 
         .mobile_selectorHeader {
+            writing-mode: vertical-lr;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             h3 {
-                font-size: toRem(15);
+                position: relative;
+                font-size: toRem(13);
             }
         }
         .mobile_regionContainer {
-            max-height: toRem(200);
+            width: 100%;
             .mobile_wrapper {
+                white-space: nowrap;
+                display: flex;
+                height: 100%;
+                background-color: white;
                 .mobile_region {
-                    font-size: toRem(20);
+                    font-size: toRem(16);
+                    display: inline-block;
+                    writing-mode: vertical-rl;
+                    border: none;
+                    border-right: 0.5px solid #B5B5B5;
+                    padding: toRem(10) toRem(5) 0 toRem(5);
                 }
             }
         }
         .mobile_selectorFooter {
-            height: toRem(15);
+            width: 30px;
+            height: 100%;
         }
     }
 }
