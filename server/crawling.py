@@ -8,6 +8,12 @@ import re
 import datetime
 import pandas as pd;
 
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--single-process')
+chrome_options.add_argument("--disable-dev-shm-usage")
+
 driver = webdriver.Chrome('./chromedriver')
 driver.implicitly_wait(10)
 driver.get('http://info.nec.go.kr/main/showDocument.xhtml?electionId=0000000000&topMenuId=VC&secondMenuId=VCCP09')
