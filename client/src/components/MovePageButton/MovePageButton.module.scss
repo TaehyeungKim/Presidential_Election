@@ -15,7 +15,7 @@
         box-sizing: border-box;
         button {
             box-sizing: border-box;
-            height: 40px;
+            height: toRem(40);
             font-size: toRem(20);
             border: none;
             background-color: #673ab7;
@@ -48,7 +48,7 @@
 @media(max-width: 750px) {
     .buttonWrapper {
         button {
-            height: 30px;
+            height: toRem(30);
             svg {
                 width: toRem(25);
                 height: toRem(20);

@@ -23,7 +23,16 @@ function DetailResult({year, region, detailVisible, setDetailVisible, isDeviceDe
         const data = new FormData();
         data.append('year', year.toString());
         data.append('region', region)
-        const res = await fetch('/detail', {
+        var url = ""
+        switch(year) {
+            default:
+                url = '/detail'
+                break;
+            case 20:
+                url = '/currentdetail'
+                break;
+        }
+        const res = await fetch(url, {
             method: "POST",
             body: data
         })
@@ -80,7 +89,7 @@ function DetailResult({year, region, detailVisible, setDetailVisible, isDeviceDe
                     return null
                 default:
                     for(let key in detailResutData) {
-                        if(key !== "구시군명" && key !== "선거인수" && key !== "투표수" && key !=="계" && key !== "무효투표수" && key !=="기권수") {
+                        if(key !== "구시군명" && key !== "선거인수" && key !== "투표수" && key !=="계" && key !== "무효투표수" && key !=="기권수" && key !=="개표율") {
                             arr.push({name: key, vote: detailResutData[key], get voteNum() {return this.vote}})
                         }
                     }
@@ -97,7 +106,10 @@ function DetailResult({year, region, detailVisible, setDetailVisible, isDeviceDe
                     <MovePageButton movePage={showMainPage} direction = {"up"}/> 
                     <div className = {styles.detailHeader}>
                         <h1>{region + " " + detailRegion}</h1>
-                        <h3>투표율: {Math.floor(detailResutData.투표수[searchThroughArr(regionArr, detailRegion)]/detailResutData.선거인수[searchThroughArr(regionArr, detailRegion)] * 10000)/100}%</h3>
+                        {year === 20 && detailResutData.개표율 !== undefined ? 
+                        <h3>개표율: {detailResutData.개표율[searchThroughArr(regionArr, detailRegion)]}%</h3>
+                        :
+                        <h3>투표율: {Math.floor(detailResutData.투표수[searchThroughArr(regionArr, detailRegion)]/detailResutData.선거인수[searchThroughArr(regionArr, detailRegion)] * 10000)/100}%</h3>}
                     </div>
                     <div className = {styles.flex_box}>
                         <DetailRegionSelector regionArr={regionArr} detailRegion={detailRegion} setDetailRegion={setDetailRegion} isDeviceDesktop={isDeviceDesktop}/>

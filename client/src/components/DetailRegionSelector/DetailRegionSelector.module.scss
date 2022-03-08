@@ -5,15 +5,11 @@
     @return $remValue;
 }
 
-@keyframes mobileSelectorAppear {
-    0% {
-    }
-}
 
 .selector {
     position: relative;
     left: 30px;
-    width: 250px;
+    width: toRem(250);
     font-family: "Jua", 'sans-serif';
     z-index: 10;
     
@@ -129,7 +125,7 @@
         scroll-behavior: smooth;
         .mobile_wrapper {
             position: relative;
-            .mobile_region {
+            .mobile_region, .mobile_region_small {
                 box-sizing: border-box;
                 border-bottom: 1px solid #808080;
                 font-size: toRem(25);
@@ -140,6 +136,10 @@
                     background-color: #B5B5B5;
                     cursor: pointer;
                 }
+            }
+
+            .mobile_region_small {
+                font-size: toRem(20);
             }
             #selected {
                 background: rgb(255,223,223);
@@ -170,7 +170,7 @@
     .mobile_selector {
         width: 100%;
         position: relative;
-        height: 130px;
+        height: toRem(130);
         order: 1;
         align-self: initial;
         display: flex;
@@ -194,13 +194,16 @@
                 display: flex;
                 height: 100%;
                 background-color: white;
-                .mobile_region {
+                .mobile_region, .mobile_region_small {
                     font-size: toRem(16);
                     display: inline-block;
                     writing-mode: vertical-rl;
                     border: none;
                     border-right: 0.5px solid #B5B5B5;
                     padding: toRem(10) toRem(5) 0 toRem(5);
+                }
+                .mobile_region_small {
+                    font-size: toRem(12);
                 }
             }
         }

@@ -101,8 +101,6 @@ function MainPage() {
             setElectionData(undefined)}
     },[year])
 
-    useEffect(()=>console.log(isDeviceDesktop),[isDeviceDesktop])
-
     return(
         
         <>
@@ -151,7 +149,7 @@ function MainPage() {
                 : <div className = {styles.pad}>
                     <div/></div>}
             </div>
-            {district !== "전국" && !((district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13)) && year !== 20? 
+            {district !== "전국" && !((district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13)) ? 
             <DetailResult year={year} region={district} detailVisible={detailVisible} setDetailVisible={setDetailVisible} isDeviceDesktop={isDeviceDesktop}/> : null}
             </div>
         

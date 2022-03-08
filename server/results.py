@@ -32,7 +32,15 @@ def readDetailData():
 @app.route("/current", methods=["POST"])
 def readCurrentData():
     excel_file = "20대_개표현황.xlsx"
-    df = pd.read_excel(excel_file, sheet_name = "20대")
+    df = pd.read_excel(excel_file, sheet_name = "전국")
+    json = df.to_json()
+    return json
+
+@app.route("/currentdetail", methods = ["POST"])
+def readCurrentDetailData():
+    region = request.form['region']
+    excel_file = "20대_개표현황.xlsx"
+    df = pd.read_excel(excel_file, sheet_name = "{}".format(region))
     json = df.to_json()
     return json
 

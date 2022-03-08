@@ -116,7 +116,7 @@
 }
 
 @for $i from 14 through 7 {
-    @media (max-width: ($i * 100px)) {
+    @media (max-width: ($i * 110px)) {
         .statContainer {
             max-width: (($i - 5) * 100px);
         }

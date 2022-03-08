@@ -18,9 +18,12 @@ function Map({selectDistrict, district, year, electionData, districtMapData, isD
     <div className = {styles.container}>
       <div className = {styles.district}>
         <div className = {isDeviceDesktop ? styles.regVoteContainer : styles.mobile_regVoteContainer}>
-          <h3>{district}</h3>                            
+          <h3>{district}</h3>
+          {year === 20 && electionData.개표율 !== undefined ? 
+          <p>개표율: {electionData.개표율[districtMapData(year)[`${district}`]]}%</p>
+          :                         
           <p style={(district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13) ? 
-          {opacity: 0} : {opacity: 1}}>투표율: {Math.floor(electionData.투표수[districtMapData(year)[`${district}`]] / electionData.선거인수[districtMapData(year)[`${district}`]]*10000)/100}%</p>
+          {opacity: 0} : {opacity: 1}}>투표율: {Math.floor(electionData.투표수[districtMapData(year)[`${district}`]] / electionData.선거인수[districtMapData(year)[`${district}`]]*10000)/100}%</p>}
         </div>
       </div>
       <svg className = {isDeviceDesktop ? styles.map : styles.mobile_map}

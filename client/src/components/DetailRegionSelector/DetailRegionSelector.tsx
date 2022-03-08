@@ -21,7 +21,8 @@ function DetailRegionSelector({regionArr, detailRegion, setDetailRegion, isDevic
                     <div className = {isDeviceDesktop ? styles.wrapper : styles.mobile_wrapper}>
                     {regionArr.map((region, idx)=>(
                         <React.Fragment key={idx}>
-                            <div className = {isDeviceDesktop ? styles.region : styles.mobile_region} id={region === detailRegion ? styles.selected : undefined} onClick = {()=>setDetailRegion(region)}>
+                            <div className = {isDeviceDesktop ? styles.region : 
+                                region.length >= 8 ? styles.mobile_region_small : styles.mobile_region} id={region === detailRegion ? styles.selected : undefined} onClick = {()=>setDetailRegion(region)}>
                                 {region}
                             </div>
                         </React.Fragment>

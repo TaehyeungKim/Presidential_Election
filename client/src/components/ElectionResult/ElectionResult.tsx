@@ -39,7 +39,7 @@ function VoteRate({voteNum, rank, img, info, district, year, isDeviceDesktop}: V
         <>
         {isDeviceDesktop ? 
         <>
-            <div className = {styles.rank}>{district === "전국" && rank===1 ? "당선" : `${rank}위`}</div>
+            <div className = {styles.rank}>{district === "전국" && rank===1 && year !== 20 ? "당선" : `${rank}위`}</div>
             <img src = {img}/>
             <div className = {styles.name}>{info[1]}</div>
             <div className = {styles.party}>{info[0]}</div>
@@ -47,7 +47,7 @@ function VoteRate({voteNum, rank, img, info, district, year, isDeviceDesktop}: V
         </>
         :
         <> 
-            <div className = {styles.mobile_rank}>{district === "전국" && rank===1 ? "당선" : `${rank}위`}</div>
+            <div className = {styles.mobile_rank}>{district === "전국" && rank===1 && year !== 20 ? "당선" : `${rank}위`}</div>
             <div className = {styles.mobile_candContent}>         
                 <img src = {img}/>
                 <div>
