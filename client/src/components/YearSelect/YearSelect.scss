@@ -64,11 +64,11 @@
     color: white;
 }
 
-@for $order from 19 through 13 {
+@for $order from 20 through 13 {
     #order_#{$order} {
         left: 200px;
         animation: showYearSelect 1s;
-        animation-delay: #{(19-$order)/10}s;
+        animation-delay: #{(20-$order)/10}s;
         animation-fill-mode: forwards;        
     }
 

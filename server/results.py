@@ -1,6 +1,14 @@
 from flask import Flask
 from flask import request
 import pandas as pd;
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+from bs4 import BeautifulSoup
+import re
+import datetime
 
 app = Flask(__name__)
 
@@ -20,6 +28,14 @@ def readDetailData():
     df = pd.read_excel(excel_file, sheet_name="{}".format(region))
     json = df.to_json()
     return json
+    
+@app.route("/current", methods=["POST"])
+def readCurrentData():
+    excel_file = "20대_개표현황.xlsx"
+    df = pd.read_excel(excel_file, sheet_name = "20대")
+    json = df.to_json()
+    return json
+
 
 if __name__ == "__main__":
     app.run(debug=True)

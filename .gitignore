@@ -2,7 +2,7 @@
 
 /server/venv
 /client/node_modules
-
+/server/chromedriver
 
 /.pnp
 .pnp.js

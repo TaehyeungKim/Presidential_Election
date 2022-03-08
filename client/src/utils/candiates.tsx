@@ -29,6 +29,13 @@ import JP_13 from '../images/candidates/13/13JP.jpg'
 
 
 const candidates = [
+    {number: 20, candidates: {
+        "문재인": {image: Moon_19, colorId: "MoonNine"},
+        "홍준표": {image: Hong_19, colorId: "HongNine"},
+        "안철수": {image: Ahn_19, colorId: "AhnNine"},
+        "유승민": {image: Yoo_19, colorId: "YooNine"},
+        "심상정": {image: Sim_19, colorId: "SimNine"}
+    }},
     {number: 19, candidates: {
         "문재인": {image: Moon_19, colorId: "MoonNine"},
         "홍준표": {image: Hong_19, colorId: "HongNine"},
