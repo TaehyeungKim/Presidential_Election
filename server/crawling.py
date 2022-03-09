@@ -90,11 +90,13 @@ def crawling(city):
         city = '충남'
     elif city == '충청북도':
         city = '충북'
+    elif city == '제주특별자치도':
+        city = '제주'
     city = re.sub('특별시', '', city)
     city = re.sub('광역시', '', city)
     city = re.sub('특별자치시','',city)
     city = re.sub('도', '', city) 
-    city = re.sub('특별자치도', '', city)
+    # city = re.sub('특별자치도', '', city)
     with pd.ExcelWriter(file_path, mode="a", engine="openpyxl", if_sheet_exists="replace") as writer:    
         df.to_excel(writer, sheet_name="{}".format(city), na_rep ='', header=True, index=False)  
 
