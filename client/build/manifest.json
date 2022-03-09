@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "selectionhistory",
+  "name": "history of Korean presidential election",
   "icons": [
     {
       "src": "favicon.ico",

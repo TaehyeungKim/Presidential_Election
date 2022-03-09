@@ -109,11 +109,12 @@ function ElectionResult({electionData, year, district, districtMapData, isDevice
                         <>
                             {isDeviceDesktop === true ?
                             <>
-                            <div className={styles.candidate} id={district === "전국" ? styles.elected : styles.first}>
+                            <div className={styles.candidate} id={district === "전국" && arr[0].voteNum[districtMapData(year)[`${district}`]] !== arr[1].voteNum[districtMapData(year)[`${district}`]] ? styles.elected : styles.first}>
                                 <VoteRate voteNum={electionData.계[districtMapData(year)[`${district}`]] === 0 ? 0 : Math.floor(((arr[0].voteNum[districtMapData(year)[`${district}`]]/electionData.계[districtMapData(year)[`${district}`]])*10000))/100} rank={1} img={first} info={arr[0].name.split("_")} district={district} year={year} isDeviceDesktop={isDeviceDesktop}/>
                             </div>
                             <div className = {styles.candidate} id = {styles.second}>
-                                <VoteRate voteNum = {electionData.계[districtMapData(year)[`${district}`]] === 0 ? 0 : Math.floor(((arr[1].voteNum[districtMapData(year)[`${district}`]]/electionData.계[districtMapData(year)[`${district}`]])*10000))/100} rank={2} img={second} info={arr[1].name.split("_")} district={district} year={year} isDeviceDesktop={isDeviceDesktop}/>
+                                <VoteRate voteNum = {electionData.계[districtMapData(year)[`${district}`]] === 0 ? 0 : Math.floor(((arr[1].voteNum[districtMapData(year)[`${district}`]]/electionData.계[districtMapData(year)[`${district}`]])*10000))/100} rank={
+                                    arr[0].voteNum[districtMapData(year)[`${district}`]] === arr[1].voteNum[districtMapData(year)[`${district}`]] ? 1:2} img={second} info={arr[1].name.split("_")} district={district} year={year} isDeviceDesktop={isDeviceDesktop}/>
                             </div> 
                             </>
                             :
@@ -122,7 +123,8 @@ function ElectionResult({electionData, year, district, districtMapData, isDevice
                                 <VoteRate voteNum={electionData.계[districtMapData(year)[`${district}`]] === 0 ? 0 : Math.floor(((arr[0].voteNum[districtMapData(year)[`${district}`]]/electionData.계[districtMapData(year)[`${district}`]])*10000))/100} rank={1} img={first} info={arr[0].name.split("_")} district={district} year={year} isDeviceDesktop={isDeviceDesktop}/>
                             </div>
                             <div className = {styles.mobile_candidate} id = {styles.mobile_second}>
-                                <VoteRate voteNum = {electionData.계[districtMapData(year)[`${district}`]] === 0 ? 0 : Math.floor(((arr[1].voteNum[districtMapData(year)[`${district}`]]/electionData.계[districtMapData(year)[`${district}`]])*10000))/100} rank={2} img={second} info={arr[1].name.split("_")} district={district} year={year} isDeviceDesktop={isDeviceDesktop}/>
+                                <VoteRate voteNum = {electionData.계[districtMapData(year)[`${district}`]] === 0 ? 0 : Math.floor(((arr[1].voteNum[districtMapData(year)[`${district}`]]/electionData.계[districtMapData(year)[`${district}`]])*10000))/100} rank={
+                                    arr[0].voteNum[districtMapData(year)[`${district}`]] === arr[1].voteNum[districtMapData(year)[`${district}`]] ? 1:2} img={second} info={arr[1].name.split("_")} district={district} year={year} isDeviceDesktop={isDeviceDesktop}/>
                             </div> 
                             </>
                             }   
