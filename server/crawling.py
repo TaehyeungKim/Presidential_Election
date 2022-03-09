@@ -15,7 +15,6 @@ chrome_options.add_argument('--single-process')
 chrome_options.add_argument("--disable-dev-shm-usage")
 
 driver = webdriver.Chrome('./chromedriver', options=chrome_options)
-driver = webdriver.Chrome('./chromedriver')
 driver.implicitly_wait(10)
 driver.get('http://info.nec.go.kr/main/showDocument.xhtml?electionId=0020220309&topMenuId=VC&secondMenuId=VCCP09')
 driver.find_element(By.XPATH, value = '//*[@id="electionId1"]').click()
