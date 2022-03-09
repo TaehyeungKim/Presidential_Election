@@ -112,7 +112,10 @@ function MobileDetailStat({arr, regionArr, detailRegion, searchThroughArr, detai
             <div className = {styles.statContainer} ref = {statContainer}>
                 <ul>
                 {arr.map((vote, idx)=>{
-                    let stat = Math.floor(vote.vote[searchThroughArr(regionArr,detailRegion)]/detailResutData.계[searchThroughArr(regionArr,detailRegion)] * 10000) / 100;
+                    let stat = 0
+                    if(detailResutData.계[searchThroughArr(regionArr,detailRegion)] !== 0 ) {
+                        stat = Math.floor(vote.vote[searchThroughArr(regionArr,detailRegion)]/detailResutData.계[searchThroughArr(regionArr,detailRegion)] * 10000) / 100;   
+                    }
                     return (   
                             <MobileDetailCandidate idx={idx} stat={stat} detailVisible={detailVisible} vote={vote} year={year}/>
                             )})}
