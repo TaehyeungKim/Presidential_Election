@@ -16,7 +16,7 @@ function MainPage() {
     const isDeviceTablet = UseMediaQuery('(min-height: 1024px)');
     const isDeviceDesktop = !(isDeviceMobile || isDeviceTablet);
     const [district, setDistrict] = useState<string>("전국");
-    const [year, setYear] = useState<number>(19);
+    const [year, setYear] = useState<number>(20);
     const [visibleYearSelect, setVisibleYearSelect] = useState<boolean>(true);
     const [electionData, setElectionData] = useState<any>();
     const [detailVisible, setDetailVisible] = useState<boolean>(true);
