@@ -1,6 +1,7 @@
 import './districts.scss'
+import { District } from '../pages/district';
 
-export const districts = (selectDistrict: (district: string) => void, district: string) => {
+export const districts = (selectDistrict: (district: District) => void, district: District) => {
     return [
         {name: "충남", 
         svgPath: <path id={district === "충남" ? "selected" : "unselected"} onClick={()=>{

@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import dataProcess from '../../functions/dataProcess'
 import styles from './DetailResult.module.scss'
 import DetailRegionSelector from '../DetailRegionSelector/DetailRegionSelector'
 import DetailStat from '../DetailStat/DetailStat'
 import MobileDetailStat from '../DetailStat/MobileDetailStat'
 import MovePageButton from '../MovePageButton/MovePageButton'
+import { DeviceModeContext } from '../../App';
 
 
 interface DetailResultProps {
@@ -12,13 +13,16 @@ interface DetailResultProps {
     region: string,
     detailVisible: boolean,
     setDetailVisible:(bool: boolean)=>void,
-    isDeviceDesktop: boolean;
+
 }
 
-function DetailResult({year, region, detailVisible, setDetailVisible, isDeviceDesktop}:DetailResultProps) {
+function DetailResult({year, region, detailVisible, setDetailVisible}:DetailResultProps) {
     const [detailResutData, setDetailResultData] = useState<any>();
     const [detailRegion, setDetailRegion] = useState<string>("");
     const [regionArr, setRegionArr] = useState<Array<string>>([]);
+
+    const isDeviceDesktop = useContext(DeviceModeContext)
+
     const parseData = async(year: number, region: string) => {
         const data = new FormData();
         data.append('year', year.toString());

@@ -1,18 +1,20 @@
-import React from 'react'
-
+import React, {useContext} from 'react'
+import { DeviceModeContext } from '../../App';
 import styles from './Map.module.scss'
 import { districts } from '../../utils/districts';
+import { District } from '../../pages/district';
 
 interface MapProps {
-  selectDistrict:(district: string) => void,
-  district: string,
+  selectDistrict:(district: District) => void,
+  district: District,
   year: number,
   electionData: any,
   districtMapData: (year: number) => any,
-  isDeviceDesktop: boolean
+  
 }
 
-function Map({selectDistrict, district, year, electionData, districtMapData, isDeviceDesktop}:MapProps) {
+function Map({selectDistrict, district, year, electionData, districtMapData}:MapProps) {
+    const isDeviceDesktop = useContext(DeviceModeContext)
 
     return(
     <div className = {styles.container}>
