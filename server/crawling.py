@@ -1,7 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
+
 import time
 from bs4 import BeautifulSoup
 import re
@@ -14,10 +15,29 @@ chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--single-process')
 chrome_options.add_argument("--disable-dev-shm-usage")
 
-driver = webdriver.Chrome('./chromedriver', options=chrome_options)
+# driver = webdriver.Chrome('./chromedriver', options=chrome_options)
+driver = webdriver.Chrome(options=chrome_options)
 driver.implicitly_wait(10)
-driver.get('http://info.nec.go.kr/main/showDocument.xhtml?electionId=0020220309&topMenuId=VC&secondMenuId=VCCP09')
-driver.find_element(By.XPATH, value = '//*[@id="electionId1"]').click()
+
+# old url - for the crawling on a real-time basis
+# driver.get('http://info.nec.go.kr/main/showDocument.xhtml?electionId=0020220309&topMenuId=VC&secondMenuId=VCCP09')
+# driver.find_element(By.XPATH, value = '//*[@id="electionId1"]').click()
+
+driver.get('http://info.nec.go.kr/main/showDocument.xhtml?electionId=0000000000&topMenuId=VC&secondMenuId=VCCP09')
+driver.find_element(By.XPATH, value = '//*[@id="electionType1"]').click()
+
+electionName = Select(driver.find_element(By.XPATH, value = '//*[@id="electionName"]'))
+electionName.select_by_value("20220309")
+time.sleep(0.5)
+
+electionCode = Select(driver.find_element(By.XPATH, value = '//*[@id="electionCode"]'))
+electionCode.select_by_value("1")
+time.sleep(0.5)
+
+
+
+
+
 
 def crawling(city):
 
@@ -34,36 +54,48 @@ def crawling(city):
     tableBody = table.find('tbody')
     tr = tableBody.find_all('tr')
 
+    tableHead = table.find('thead')
+    td = tableHead.find_all('tr')[2].find_all('strong')
+
     # making dataframe column
-    first_tr = tr[0]
-    td = first_tr.find_all('td')
+    # first_tr = tr[0]
+    # td = first_tr.find_all('td')
     if city == '▷ 전 체':
         col = ['시도명', '선거인수', '투표수']
     else:
         col = ['구시군명', '선거인수', '투표수']
 
-    for i in range(3,16):
+    for i in range(0,12):
         raw_tag = td[i]
         toStr = str(raw_tag)
         replace = toStr.replace('<br/>', '_')
         name = re.sub('<.+?>','',replace)
         col.append(name)
+    col.append('계')
     col.append('개표율')
+
+    def parseUnit(tag):
+        strWoTag = str(tag)
+        pureNum = re.sub('<.+?>','',strWoTag)
+        pureNum_up = re.sub('\s.+?','',pureNum)
+        return pureNum_up
 
     # writing data
     numArr = []
     for x in range(len(tr)):
         arr = []
+            
         if((x % 2) == 1):
-            num = tr[x].find_all('td')
-            for j in num: 
-                strWoTag = str(j)
-                pureNum = re.sub('<.+?>','',strWoTag)
-                pureNum_up = re.sub('\s.+?','',pureNum)
-                arr.append(pureNum_up)
+            # val = tr[x-1].find_all('td')
+            # for k in range(0,3):
+            #     arr.append(parseUnit(val[k]))
+            num = tr[x-1].find_all('td')
+            for k in range(0, len(num)-2): 
+                arr.append(parseUnit(num[k]))
+            # arr.append(parseUnit(val[len(val)-3]))
+            arr.append(100)
             numArr.append(arr)
         
-
     raw_data = {}
     for index in range(len(col)):
         data = []

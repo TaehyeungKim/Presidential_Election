@@ -89,7 +89,8 @@ function MainPage() {
         const json = await response.json()
         .then(value => {
             dataProcess(value);
-            setElectionData(value)
+            setElectionData(value);
+            
         })
     }
 

@@ -18,19 +18,21 @@ function VoteRate({voteNum, rank, img, info, district, year, isDeviceDesktop}: V
     const updated = useRef(0);
 
     const numberAnimation = () => {
+
         if(updated.current < 100) {
             const num = Math.floor(Math.random() * 10000)/100
             setVoteRate(num)
             setTimeout(numberAnimation, 5)
         } else if(updated.current === 100) {
             setVoteRate(voteNum)
+            
         }
         updated.current = updated.current + 1
     }
 
     useEffect(()=>{
         numberAnimation()
-        return ()=>{setVoteRate(0); updated.current = 0; clearTimeout()}
+        return ()=>{setVoteRate(0); updated.current = 0}
     },[district, year])
     
 
@@ -81,8 +83,8 @@ function ElectionResult({electionData, year, district, districtMapData, isDevice
                     return null
                 default:
                     for(let key in electionData) {
-                        if(key !== "시도명" && key !== "선거인수" && key !== "투표수" && key !=="계") {
-                            arr.push({name: key, vote: electionData[key], get voteNum() {return this.vote}})
+                        if(key !== "시도명" && key !== "선거인수" && key !== "투표수" && key !=="계" && key !== "개표율") {
+                            arr.push({name: key, vote: electionData[key], get voteNum():any {return this.vote}})
                         }
                     }
 
@@ -93,6 +95,7 @@ function ElectionResult({electionData, year, district, districtMapData, isDevice
                             j=j-1
                         }
                     }
+                    
                     const obj = candidates.filter((elm)=>{
                         return elm.number === year
                     })
