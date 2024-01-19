@@ -31,6 +31,11 @@ function VoteRate({voteNum, rank, img, info, district, year}: VoteRateProps) {
         updated.current = updated.current + 1
     }
 
+    const picture = <picture>
+                        <source srcSet={img} type='image/webp' media='all'></source>    
+                        <img/>
+                    </picture>
+
     useEffect(()=>{
         numberAnimation()
         return ()=>{setVoteRate(0); updated.current = 0}
@@ -43,7 +48,8 @@ function VoteRate({voteNum, rank, img, info, district, year}: VoteRateProps) {
         {isDeviceDesktop ? 
         <>
             <div className = {styles.rank}>{district === "전국" && rank===1 && year !== 20 ? "당선" : `${rank}위`}</div>
-            <img src = {img}/>
+            {/* <img src = {img}/> */}
+            {picture}
             <div className = {styles.name}>{info[1]}</div>
             <div className = {styles.party}>{info[0]}</div>
             <div className = {styles.rate} style = {(district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13) ? {opacity: 0} : {opacity: 1}}>{voteRate}%</div>
@@ -51,8 +57,9 @@ function VoteRate({voteNum, rank, img, info, district, year}: VoteRateProps) {
         :
         <> 
             <div className = {styles.mobile_rank}>{district === "전국" && rank===1 && year !== 20 ? "당선" : `${rank}위`}</div>
-            <div className = {styles.mobile_candContent}>         
-                <img src = {img}/>
+            <div className = {styles.mobile_candContent}>
+                {picture}
+                
                 <div>
                     <div className = {styles.mobile_name}>{info[1]}</div>
                     <div className = {styles.mobile_party}>{info[0]}</div>
@@ -80,7 +87,7 @@ function ElectionResult({electionData, year, district, districtMapData}:Election
     return(
         <>
         {(()=>{
-            var arr = []
+            const arr = []
             switch(electionData) {
                 case undefined:
                     return null
@@ -103,7 +110,7 @@ function ElectionResult({electionData, year, district, districtMapData}:Election
                         return elm.number === year
                     })
                     const candObj: any = obj[0].candidates
-                    var [first, second] = ["", ""]
+                    let [first, second] = ["", ""]
                     for(let candidate in candObj) {
                         if(candidate === arr[0].name.split("_")[1]) {
                             first = candObj[candidate].image;

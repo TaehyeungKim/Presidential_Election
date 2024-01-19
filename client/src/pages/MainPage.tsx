@@ -62,35 +62,17 @@ function MainPage() {
         setVisibleYearSelect(false);
     }
     
-    const selectDistrict = (district: District) => {
-      setDistrict(district)
-    }
-
-    const selectYear = (year: number) => {
-        setYear(year);
-    }
-
-    const controlYearSelect = () => {
-        setVisibleYearSelect(!visibleYearSelect)
-    }
-
+    const selectDistrict = (district: District) => setDistrict(district)
     
-        
-    
-    
+    const selectYear = (year: number) => setYear(year);
 
+    const controlYearSelect = () => setVisibleYearSelect(!visibleYearSelect)
+    
     const parseData = async(req: number) => {
         const data = new FormData();
         data.append('req', req.toString())
-        var url = ""
-        switch(req) {
-            default:
-                url = '/results'
-                break;
-            case 20:
-                url = '/current'
-                break;
-        }
+        const url = req === 20 ? '/current' : '/results'
+        
         const response = await fetch(url, {
             method: "POST",
             body: data

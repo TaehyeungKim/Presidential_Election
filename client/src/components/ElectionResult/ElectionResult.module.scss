@@ -75,9 +75,15 @@
         font-size: toRem(20);
     }
 
-    img {
+    picture {
         width: 100%;
+        display: block;
+        img {
+            width: 100%;
+        }
     }
+
+    
 }
 
 #first {
@@ -245,8 +251,11 @@
             font-size: toRem(20);
             text-align: center;
         }
-        img {
-            height: 100%
+        picture {
+            height: 100%;
+            img {
+                height: 100%;
+            }
         }
         .mobile_infoContainer {
             position: relative;
