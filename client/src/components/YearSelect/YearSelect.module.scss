@@ -1,57 +1,48 @@
-.yearSelectArea {
-    position: fixed;
-    top: 100px;
-    right: 0;
-    z-index: 20;
-    cursor: pointer;
-}
-
 .openYearSelect {
-    position: fixed;
-    top: 30px;
-    right: 20px;
-    z-index: 10;
-    background-color: rgba(249, 194, 194, 0.6);
-    cursor: pointer;
-    display: flex;
-    border-radius: 10px;
-    border: 1px solid white;
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  z-index: 10;
+  background-color: rgba(249, 194, 194, 0.6);
+  cursor: pointer;
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid white;
 
-    img {
-        width: 50px;
-    }
+  img {
+    width: 50px;
+  }
 
-    &:hover {
-        opacity: 0.5;
-    }
+  &:hover {
+    opacity: 0.5;
+  }
 }
-
 
 @media (max-width: 500px) {
-    .openYearSelect {
-        img {
-            width: 40px;
-        }
+  .openYearSelect {
+    img {
+      width: 40px;
     }
+  }
 }
 
 @media (max-width: 350px) {
-    .openYearSelect {
-        right: 10px;
-        top: 40px;
-        border-radius: 5px;
-        img {
-            width: 30px;
-        }
+  .openYearSelect {
+    right: 10px;
+    top: 40px;
+    border-radius: 5px;
+    img {
+      width: 30px;
     }
+  }
 }
 
 @media (max-width: 300px) {
-    .openYearSelect {
-        right: 5px;
-        top: 50px;
-        img {
-            width: 25px;
-        }
+  .openYearSelect {
+    right: 5px;
+    top: 50px;
+    img {
+      width: 25px;
     }
+  }
 }

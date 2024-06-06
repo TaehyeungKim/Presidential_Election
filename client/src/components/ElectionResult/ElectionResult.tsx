@@ -12,6 +12,7 @@ interface VoteRateProps {
     year: number,
 }
 
+
 function VoteRate({voteNum, rank, img, info, district, year}: VoteRateProps) {
 
     const [voteRate, setVoteRate] = useState<number>(0);
@@ -50,6 +51,8 @@ function VoteRate({voteNum, rank, img, info, district, year}: VoteRateProps) {
             <div className = {styles.rank}>{district === "전국" && rank===1 && year !== 20 ? "당선" : `${rank}위`}</div>
             {/* <img src = {img}/> */}
             {picture}
+            
+            
             <div className = {styles.name}>{info[1]}</div>
             <div className = {styles.party}>{info[0]}</div>
             <div className = {styles.rate} style = {(district === "세종" && year <= 17) || (district === "울산" && year <= 14) || (district === "대전" && year ==13) ? {opacity: 0} : {opacity: 1}}>{voteRate}%</div>
