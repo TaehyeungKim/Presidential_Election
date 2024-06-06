@@ -1,46 +1,17 @@
-# Getting Started with Create React App
+# 🗳SelectionHistory - 우리나라 역대 대통령 선거 결과는?
+지난 13대부터 20대 대통령 선거 결과 정보를 그래픽으로 제공합니다. 광역 단위 뿐만 아니라 세부 선거구 별 개표 결과까지 상세 페이지에서 보여줍니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img width="1440" alt="스크린샷 2024-06-07 오전 12 50 45" src="https://github.com/TaehyeungKim/Presidential_Election/assets/85505622/e357055c-295f-4e85-9e3c-f2a28e3570ea">
+<img width="1440" alt="스크린샷 2024-06-07 오전 12 51 04" src="https://github.com/TaehyeungKim/Presidential_Election/assets/85505622/0fda3002-c718-44b4-b543-360967326cb3">
+<img width="1440" alt="스크린샷 2024-06-07 오전 12 51 34" src="https://github.com/TaehyeungKim/Presidential_Election/assets/85505622/a28596cc-5968-4f9b-b6a4-8bb6284dba97">
 
-## Available Scripts
+📌 Client: Typescript + React.js
+📌 BackEnd: Python Flask
+📌 Server: Linux Ubuntu
 
-In the project directory, you can run:
+📌 WorkFlow: 실제 지난 20대 대통령 선거 개표 당시에는, 중앙선거관리위원회 홈페이지에 실시간으로 갱신되는 개표 현황 정보를 주기적으로 크롤링하여 서버의 엑셀 파일에 저장한 후, 클라이언트의 요청이 있을 시 해당 파일을 읽어와 사용자에게 정보를 제시하였습니다.(13-19대 대선 결과의 경우에는 미리 정적 데이터로 파일에 저장) Linux 서버의 crontab을 이용하여 크롤링이 주기적으로 실행될 수 있도록 설정하였습니다.
 
-### `npm start`
+👇개표 당시(2022.3.21) 사이트 화면 녹화
+https://github.com/TaehyeungKim/Presidential_Election/assets/85505622/93f61045-d39c-43a2-be78-723a12e1c62d
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
